@@ -1,8 +1,10 @@
+import { Login } from "./components/login";
 import { Register } from "./components/register";
 
 const main = document.getElementById('main');
 
 const routes = {
+    '/login': Login,
     '/register': Register
 };
 

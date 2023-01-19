@@ -16,7 +16,7 @@ export const Register = () => {
     const passwordLabel = document.createElement('label');
     const passwordInput = document.createElement('input');
     const sendButton = document.createElement('button');
-    const footerP = document.createElement('p')
+    const footerP = document.createElement('p');
 
     logoSection.className = 'section-logo';
     logoSection.appendChild(logo);
@@ -46,7 +46,7 @@ export const Register = () => {
     userInput.placeholder = 'latinaTech';
     passwordInput.placeholder = '********';
 
-    footerP.innerHTML = 'Creado por y para Laboratorians'
+    footerP.innerText = 'Creado por y para Laboratorians'
     footerContainer.appendChild(footerP);
 
     mainContainer.appendChild(logoSection);

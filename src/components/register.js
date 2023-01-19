@@ -20,7 +20,7 @@ export const Register = () => {
 
     logoSection.className = 'section-logo';
     logoSection.appendChild(logo);
-    logo.src = './';
+    logo.src = '../powerL-logo_250x39.png';
     logo.alt = 'logo-P💛werL';
 
     titleSection.className = 'section-h2';

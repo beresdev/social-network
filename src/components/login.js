@@ -1,4 +1,4 @@
-import { onNavigate } from "../router";
+// import { onNavigate } from "../router.js";
 
 export const Login = () => {
     const body = document.getElementById('body');
@@ -19,7 +19,7 @@ export const Login = () => {
     const questionP = document.createElement('p');
     const registerLink = document.createElement('a');
     const or = document.createElement('p');
-    const googleLink = document.createElement('a');
+    const googleLink = document.createElement('p');
     const footerP = document.createElement('p');
 
     logoSection.className = 'section-logo';
@@ -27,6 +27,7 @@ export const Login = () => {
     logo.src = '../powerL-logo_250x39.png';
     logo.alt = 'logo-P💛werL';
 
+    formSection.className = 'section-form'
     formSection.appendChild(form);
 
     form.className = 'login-form';
@@ -52,7 +53,9 @@ export const Login = () => {
     registerSection.appendChild(googleLink);
 
     questionP.innerText = '¿Aún no tienes una cuenta?';
-    registerLink.innerText = 'Regpistrate';
+    questionP.appendChild(registerLink);
+    registerLink.innerText = 'Regístrate';
+    registerLink.href = '#';
     or.innerText = 'o';
     googleLink.innerText = 'Inicia sesión con Google';
 
@@ -67,6 +70,8 @@ export const Login = () => {
 
     body.appendChild(mainContainer);
     body.appendChild(footerContainer);
+
+    //window.location.pathname = '/login';
 
 
     return body;

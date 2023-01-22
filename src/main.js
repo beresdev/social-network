@@ -1,5 +1,7 @@
 // Este es el punto de entrada de tu aplicacion
 
-import { myFunction } from './lib/index.js';
+import { load } from './lib/router.js';
 
-myFunction();
+load()
+
+window.onpopstate = load;

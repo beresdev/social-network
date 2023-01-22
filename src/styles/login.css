@@ -1,0 +1,61 @@
+.section-logo {
+    height: 30%;
+    padding-top: 120px;
+}
+
+.section-form {
+    height: 30%;
+    padding: 5px;
+    margin-top: 10%;
+}
+
+.login-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-form form label {
+    padding: 7px;
+    color: var(--complement-color);
+}
+
+.section-form form input {
+    margin: 0 0 22px 0;
+    width: 290px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.login-form a {
+    text-align: center;
+    font-size: 10px;
+    margin-top: -15px;
+    color: var(--complement-color);
+}
+
+.login-form button {
+    width: 170px;
+    height: 30px;
+    background-color: var(--emphasis-color);
+    color: black;
+    border-radius: 15px;
+    margin: 5% auto 0;
+    font-size: 14px;
+}
+
+.login-form button:hover {
+    background-color: var(--complement-color);
+    color: var(--base);
+    cursor: pointer;
+}
+
+.section-register {
+    height: 40%;
+}
+
+.section-register p {
+    text-align: center;
+    padding: 10px 0;
+}

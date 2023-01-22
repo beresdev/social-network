@@ -17,19 +17,21 @@ export const Login = () => {
     const passwordInput = document.createElement('input');
     const forgotLink = document.createElement('a');
     const loginButton = document.createElement('button');
-    const registerSection = document.createElement('section');
+    const registerGoogleSection = document.createElement('section');
     const questionP = document.createElement('p');
     const registerLink = document.createElement('a');
     const or = document.createElement('p');
-    const googleLink = document.createElement('p');
+    const googleLogin = document.createElement('div');
+    const loginWith = document.createElement('p');
+    const googleLogo = document.createElement('div');
     const footerP = document.createElement('p');
 
-    logoSection.className = 'section-logo';
+    logoSection.className = 'login-section-logo';
     logoSection.appendChild(logo);
     logo.src = '../powerL-logo_250x39.png';
     logo.alt = 'logo-P💛werL';
 
-    formSection.className = 'section-form'
+    formSection.className = 'login-section-form'
     formSection.appendChild(form);
 
     form.className = 'login-form';
@@ -48,12 +50,12 @@ export const Login = () => {
     loginButton.innerText = 'Iniciar sesión';
     loginButton.className = 'login-button';
 
-    registerSection.className = 'section-register';
+    registerGoogleSection.className = 'login-section-registerGoogle';
 
-    registerSection.appendChild(questionP);
-    registerSection.appendChild(registerLink);
-    registerSection.appendChild(or);
-    registerSection.appendChild(googleLink);
+    registerGoogleSection.appendChild(questionP);
+    registerGoogleSection.appendChild(registerLink);
+    registerGoogleSection.appendChild(or);
+    registerGoogleSection.appendChild(googleLogin);
 
     questionP.innerText = '¿Aún no tienes una cuenta?';
     questionP.appendChild(registerLink);
@@ -66,13 +68,20 @@ export const Login = () => {
     });
 
     or.innerText = 'o';
-    googleLink.innerText = 'Inicia sesión con Google';
+
+    googleLogin.appendChild(loginWith);
+    googleLogin.appendChild(googleLogo);
+    googleLogin.className = 'login-google'
+
+    loginWith.className = 'login-with';
+    loginWith.innerText = 'Inicia sesión con ';
+    googleLogo.className = 'google-logo';
 
     mainContainer.appendChild(logoSection);
     mainContainer.appendChild(formSection);
-    mainContainer.appendChild(registerSection);
+    mainContainer.appendChild(registerGoogleSection);
 
-    footerP.innerText = 'Creado por y para Laboratorians'
+    footerP.innerText = 'Desarrollada por y para Laboratorians';
     footerContainer.appendChild(footerP);
 
     body.appendChild(mainContainer);

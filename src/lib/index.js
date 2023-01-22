@@ -1,6 +1,9 @@
 // aqui exportaras las funciones que necesites
+// import { onNavigate } from './lib/router.js';
 
-export const myFunction = () => {
-  // aqui tu codigo
-  console.log('Hola mundo!');
-};
+// const register = document.getElementById('register-link');
+
+// register.addEventListener('click', () => {
+//     console.log("click en registrate")
+//     onNavigate('/register')
+// });

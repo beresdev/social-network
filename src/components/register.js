@@ -1,7 +1,10 @@
+
 export const Register = () => {
     const body = document.getElementById('body');
     const mainContainer = document.getElementById('main');
     const footerContainer = document.getElementById('footer');
+    
+    body.innerHTML='';
 
     const logoSection = document.createElement('section');
     const logo = document.createElement('img');

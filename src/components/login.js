@@ -1,9 +1,11 @@
-// import { onNavigate } from "../router.js";
+import { onNavigate } from "../lib/router.js";
 
 export const Login = () => {
     const body = document.getElementById('body');
     const mainContainer = document.getElementById('main');
     const footerContainer = document.getElementById('footer');
+
+    body.innerHTML='';
 
     const logoSection = document.createElement('section');
     const logo = document.createElement('img');
@@ -44,6 +46,7 @@ export const Login = () => {
     passwordInput.placeholder = '********';
     forgotLink.innerText = '¿Olvidaste tu contraseña';
     loginButton.innerText = 'Iniciar sesión';
+    loginButton.className = 'login-button';
 
     registerSection.className = 'section-register';
 
@@ -55,11 +58,15 @@ export const Login = () => {
     questionP.innerText = '¿Aún no tienes una cuenta?';
     questionP.appendChild(registerLink);
     registerLink.innerText = 'Regístrate';
-    registerLink.href = '#';
+    registerLink.id = 'register-link'
+    registerLink.href = '';
+
+    registerLink.addEventListener('click', () => {
+        onNavigate('/register')
+    });
+
     or.innerText = 'o';
     googleLink.innerText = 'Inicia sesión con Google';
-
-    registerLink.addEventListener('click', () => onNavigate('/register'));
 
     mainContainer.appendChild(logoSection);
     mainContainer.appendChild(formSection);
@@ -71,8 +78,5 @@ export const Login = () => {
     body.appendChild(mainContainer);
     body.appendChild(footerContainer);
 
-    //window.location.pathname = '/login';
-
-
-    return body;
+   return body;
 }

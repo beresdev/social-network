@@ -1,61 +1,110 @@
-.section-logo {
-    height: 30%;
-    padding-top: 120px;
+.login-section-logo {
+    height: 25%;
+    padding-top: 12rem;
 }
 
-.section-form {
-    height: 30%;
-    padding: 5px;
+.login-section-form {
+    height: 45%;
+    padding: 0.5rem;
     margin-top: 10%;
 }
 
-.login-form {
+.login-section-form .login-form {
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.section-form form label {
-    padding: 7px;
+.login-section-form .login-form label {
+    padding: 2rem 0 1rem 0;
+    margin-left: 5%;
+    font-size: 1.4rem;
     color: var(--complement-color);
 }
 
-.section-form form input {
-    margin: 0 0 22px 0;
-    width: 290px;
-    height: 40px;
-    border-radius: 10px;
+.login-section-form .login-form input {
+    margin: 0 auto;
+    width: 29rem;
+    height: 4rem;
+    border-radius: 2rem;
+    text-indent: 1rem;
+    font-size: 1.4rem;
+    border: 2px solid var(--black);
 }
 
-.login-form a {
+.login-section-form .login-form input::placeholder {
+    color: var(--placeholder-color);
+}
+
+.login-section-form .login-form span {
+    position: relative;
+    width: 1.7rem;
+    top: -2.6rem;
+    left: 26rem;
+    font-size: 1.4rem;
+    color: var(--placeholder-color);
+}
+
+.login-section-form .login-form a {
+    margin-top: 0.5rem;
     text-align: center;
-    font-size: 10px;
-    margin-top: -15px;
+    text-decoration: none;
+    font-size: 1rem;
     color: var(--complement-color);
 }
 
-.login-form button {
-    width: 170px;
-    height: 30px;
+.login-section-form .login-form .login-button {
+    width: 17rem;
+    height: 3rem;
     background-color: var(--emphasis-color);
-    color: black;
+    color: var(--black);
+    border: none;
     border-radius: 15px;
-    margin: 5% auto 0;
-    font-size: 14px;
+    margin: 10% auto 0;
+    font-size: 1.4rem;
+    font-weight: bold;
 }
 
-.login-form button:hover {
+.login-section-form .login-form .login-button:hover {
     background-color: var(--complement-color);
-    color: var(--base);
+    color: var(--base-color);
     cursor: pointer;
 }
 
-.section-register {
-    height: 40%;
+.login-section-registerGoogle {
+    width: 100%;
+    height: 30%;
+    padding-top: 5%;
+} 
+
+.login-section-registerGoogle p {
+    padding: 10px 0;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
 }
 
-.section-register p {
-    text-align: center;
-    padding: 10px 0;
+.login-section-registerGoogle p a {
+    padding-left: .5rem;
+    text-decoration: none;
+    color: var(--complement-color);
+}
+
+.login-google {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.login-section-registerGoogle .google-logo {
+    width: 3rem;
+    height: 3rem;
+    margin-left: 0.5rem;
+    background-image: url('../google-logo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.login-section-registerGoogle .google-logo:hover {
+    cursor: pointer;
 }

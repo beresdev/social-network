@@ -1,10 +1,10 @@
 .login-section-logo {
-    height: 30%;
+    height: 25%;
     padding-top: 12rem;
 }
 
 .login-section-form {
-    height: 40%;
+    height: 45%;
     padding: 0.5rem;
     margin-top: 10%;
 }
@@ -27,16 +27,28 @@
     width: 29rem;
     height: 4rem;
     border-radius: 2rem;
+    text-indent: 1rem;
+    font-size: 1.4rem;
+    border: 2px solid var(--black);
 }
 
 .login-section-form .login-form input::placeholder {
     color: var(--placeholder-color);
-    padding-left: 0.5rem;
+}
+
+.login-section-form .login-form span {
+    position: relative;
+    width: 1.7rem;
+    top: -2.6rem;
+    left: 26rem;
+    font-size: 1.4rem;
+    color: var(--placeholder-color);
 }
 
 .login-section-form .login-form a {
     margin-top: 0.5rem;
     text-align: center;
+    text-decoration: none;
     font-size: 1rem;
     color: var(--complement-color);
 }
@@ -48,7 +60,7 @@
     color: var(--black);
     border: none;
     border-radius: 15px;
-    margin: 5% auto 0;
+    margin: 10% auto 0;
     font-size: 1.4rem;
     font-weight: bold;
 }
@@ -58,7 +70,6 @@
     color: var(--base-color);
     cursor: pointer;
 }
-
 
 .login-section-registerGoogle {
     width: 100%;
@@ -92,4 +103,8 @@
     background-image: url('../google-logo.png');
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.login-section-registerGoogle .google-logo:hover {
+    cursor: pointer;
 }

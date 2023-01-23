@@ -38,6 +38,8 @@ export const Register = () => {
 
     formSection.className = 'section-form'
     formSection.appendChild(form);
+
+    statusContaner.className = 'status-container'
     
     form.className = 'register-form';
     form.appendChild(emailLabel);
@@ -50,9 +52,9 @@ export const Register = () => {
     statusContaner.appendChild(studentLabel);
     statusContaner.appendChild(graduateInput);
     statusContaner.appendChild(graduateLabel);
-    statusContaner.appendChild(passwordLabel);
-    statusContaner.appendChild(passwordInput);
-    statusContaner.appendChild(sendButton);
+    form.appendChild(passwordLabel);
+    form.appendChild(passwordInput);
+    form.appendChild(sendButton);
 
     emailLabel.innerText = 'Correo';
     userLabel.innerText = 'Usuaria';

@@ -15,6 +15,7 @@ export const Login = () => {
     const emailInput = document.createElement('input');
     const passwordLabel = document.createElement('label');
     const passwordInput = document.createElement('input');
+    const eyePassword = document.createElement('span');
     const forgotLink = document.createElement('a');
     const loginButton = document.createElement('button');
     const registerGoogleSection = document.createElement('section');
@@ -39,14 +40,18 @@ export const Login = () => {
     form.appendChild(emailInput);
     form.appendChild(passwordLabel);
     form.appendChild(passwordInput);
+    form.appendChild(eyePassword);
     form.appendChild(forgotLink);
     form.appendChild(loginButton);
+    eyePassword.innerHTML = '<i class="fa-regular fa-eye"></i>'
 
     emailLabel.innerText = 'Correo';
     passwordLabel.innerText = 'Contraseña';
     emailInput.placeholder = 'email@domain.com';
     passwordInput.placeholder = '********';
-    forgotLink.innerText = '¿Olvidaste tu contraseña';
+    forgotLink.innerText = '¿Olvidaste tu contraseña?';
+    forgotLink.href ='';
+    forgotLink.id = 'forgot-password'
     loginButton.innerText = 'Iniciar sesión';
     loginButton.className = 'login-button';
 

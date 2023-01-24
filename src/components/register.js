@@ -103,7 +103,7 @@ export const Register = () => {
         console.log('SendButton clicked')
         const email = document.getElementById('emailRegister');
         const password = document.getElementById('passwordRegister');
-        registerEmailAndPassword(email, password);
+        registerEmailAndPassword(email.value, password.value);
     })
 
     footerP.innerText = 'Desarrollada por y para Laboratorians';

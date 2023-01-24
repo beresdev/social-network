@@ -5,12 +5,12 @@ import {getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/
 const app = initializeApp(firebaseConfig);
 
 export const registerEmailAndPassword = (email, password) => {
-    const auth = getAuth(app);
     console.log('funcion register')
-
+    
     console.log(email);
     console.log(password);
-
+    
+    const auth = getAuth(app);
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         // Signed in 

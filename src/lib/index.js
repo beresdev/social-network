@@ -1,4 +1,4 @@
 // aqui exportaras las funciones que necesites
-export const registerEmailAndPassword = () => {
-    const email = document.getElementById('')
-}
+//import { getAuth } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js'
+
+

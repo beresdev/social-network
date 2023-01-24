@@ -1,3 +1,4 @@
+import { registerEmailAndPassword } from '../firebase/firebaseFunctions.js'
 
 export const Register = () => {
     const body = document.getElementById('body');
@@ -16,12 +17,12 @@ export const Register = () => {
     const emailInput = document.createElement('input');
     const userLabel = document.createElement('label');
     const userInput = document.createElement('input');
-    const statusLabel = document.createElement('label');
-    const statusContaner = document.createElement('div');
-    const studentInput = document.createElement('input');
-    const studentLabel = document.createElement('label');
-    const graduateInput = document.createElement('input');
-    const graduateLabel = document.createElement('label');
+    //const statusLabel = document.createElement('label');
+    // const statusContaner = document.createElement('div');
+    // const studentInput = document.createElement('input');
+    // const studentLabel = document.createElement('label');
+    // const graduateInput = document.createElement('input');
+    // const graduateLabel = document.createElement('label');
     const passwordLabel = document.createElement('label');
     const passwordInput = document.createElement('input');
     const sendButton = document.createElement('button');
@@ -39,19 +40,19 @@ export const Register = () => {
     formSection.className = 'section-form'
     formSection.appendChild(form);
 
-    statusContaner.className = 'status-container'
+    //statusContaner.className = 'status-container'
     
     form.className = 'register-form';
     form.appendChild(emailLabel);
     form.appendChild(emailInput);
     form.appendChild(userLabel);
     form.appendChild(userInput);
-    form.appendChild(statusLabel);
-    form.appendChild(statusContaner);
-    statusContaner.appendChild(studentInput);
-    statusContaner.appendChild(studentLabel);
-    statusContaner.appendChild(graduateInput);
-    statusContaner.appendChild(graduateLabel);
+    //form.appendChild(statusLabel);
+    // form.appendChild(statusContaner);
+    // statusContaner.appendChild(studentInput);
+    // statusContaner.appendChild(studentLabel);
+    // statusContaner.appendChild(graduateInput);
+    // statusContaner.appendChild(graduateLabel);
     form.appendChild(passwordLabel);
     form.appendChild(passwordInput);
     form.appendChild(sendButton);
@@ -72,31 +73,38 @@ export const Register = () => {
 
     passwordInput.type = 'password';
     passwordInput.minLength = '8';
-    passwordInput.pattern = '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}';
-    passwordInput.  title = 'Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters';
+    //passwordInput.pattern = '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}';
+    passwordInput.title = 'Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters';
     passwordInput.id = 'passwordRegister';
     passwordInput.required = 'required';
     passwordInput.placeholder = '********';
 
-    statusLabel.innerText = 'Soy:'
+    //statusLabel.innerText = 'Soy:'
 
-    studentInput.type = 'radio';
-    studentInput.id = 'student';
-    studentInput.name = 'status';
-    studentInput.value = 'Estudiante'
-    studentLabel.for = 'student';
-    studentLabel.innerText = 'Estudiante';
+    // studentInput.type = 'radio';
+    // studentInput.id = 'student';
+    // studentInput.name = 'status';
+    // studentInput.value = 'Estudiante'
+    // studentLabel.for = 'student';
+    // studentLabel.innerText = 'Estudiante';
 
-    graduateInput.type = 'radio';
-    graduateInput.id = 'graduate';
-    graduateInput.name = 'status';
-    graduateInput.value = 'Egresada'
-    graduateLabel.for = 'graduate';
-    graduateLabel.innerText = 'Egresada';
+    // graduateInput.type = 'radio';
+    // graduateInput.id = 'graduate';
+    // graduateInput.name = 'status';
+    // graduateInput.value = 'Egresada'
+    // graduateLabel.for = 'graduate';
+    // graduateLabel.innerText = 'Egresada';
 
     sendButton.innerText = 'Enviar';
     sendButton.className = 'sendButton';
-    sendButton.type = 'submit';
+    //sendButton.type = 'submit';
+
+    sendButton.addEventListener('click', () => {
+        console.log('SendButton clicked')
+        const email = document.getElementById('emailRegister');
+        const password = document.getElementById('passwordRegister');
+        registerEmailAndPassword(email, password);
+    })
 
     footerP.innerText = 'Desarrollada por y para Laboratorians';
     footerContainer.appendChild(footerP);

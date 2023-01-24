@@ -61,9 +61,21 @@ export const Register = () => {
     passwordLabel.innerText = 'Contraseña';
 
     emailInput.type = 'email';
+    emailInput.pattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$';
+    emailInput.id = 'emailRegister';
+    emailInput.required = 'required';
     emailInput.placeholder = 'email@domain.com';
 
+    userInput.type = 'text';
     userInput.placeholder = 'latinaTech';
+    userInput.id = 'userRegister';
+
+    passwordInput.type = 'password';
+    passwordInput.minLength = '8';
+    passwordInput.pattern = '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}';
+    passwordInput.  title = 'Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters';
+    passwordInput.id = 'passwordRegister';
+    passwordInput.required = 'required';
     passwordInput.placeholder = '********';
 
     statusLabel.innerText = 'Soy:'

@@ -7,7 +7,6 @@ const footer = document.getElementById('footer');
 
 const routes = {
     '/': Login,
-    //'/login': Login,
     '/register': Register
 };
 

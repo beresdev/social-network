@@ -68,29 +68,30 @@ export const Login = () => {
     registerLink.id = 'register-link'
     registerLink.href = '';
 
-    registerLink.addEventListener('click', () => {
-        onNavigate('/register')
-    });
-
+    
     or.innerText = 'o';
-
+    
     googleLogin.appendChild(loginWith);
     googleLogin.appendChild(googleLogo);
     googleLogin.className = 'login-google'
-
+    
     loginWith.className = 'login-with';
     loginWith.innerText = 'Inicia sesión con ';
     googleLogo.className = 'google-logo';
-
+    
     mainContainer.appendChild(logoSection);
     mainContainer.appendChild(formSection);
     mainContainer.appendChild(registerGoogleSection);
-
+    
     footerP.innerText = 'Desarrollada por y para Laboratorians';
     footerContainer.appendChild(footerP);
-
+    
     body.appendChild(mainContainer);
     body.appendChild(footerContainer);
+    
+    registerLink.addEventListener('click', () => {
+        onNavigate('/register')
+    });
 
    return body;
 }

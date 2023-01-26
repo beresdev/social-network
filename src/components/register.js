@@ -1,120 +1,128 @@
-import { registerEmailAndPassword } from '../firebase/firebaseFunctions.js'
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
+import firebaseConfig from "../firebase/firebaseConfig.js";
+import {getAuth } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
+
+import { registerEmailAndPassword } from "../firebase/firebaseFunctions.js";
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 export const Register = () => {
-    const body = document.getElementById('body');
-    const mainContainer = document.getElementById('main');
-    const footerContainer = document.getElementById('footer');
-    
-    body.innerHTML='';
+  const body = document.getElementById("body");
+  const mainContainer = document.getElementById("main");
+  const footerContainer = document.getElementById("footer");
 
-    const logoSection = document.createElement('section');
-    const logo = document.createElement('img');
-    const titleSection = document.createElement('section');
-    const h2 = document.createElement('h2');
-    const formSection = document.createElement('section');
-    const form = document.createElement('form');
-    const emailLabel = document.createElement('label');
-    const emailInput = document.createElement('input');
-    const userLabel = document.createElement('label');
-    const userInput = document.createElement('input');
-    //const statusLabel = document.createElement('label');
-    // const statusContaner = document.createElement('div');
-    // const studentInput = document.createElement('input');
-    // const studentLabel = document.createElement('label');
-    // const graduateInput = document.createElement('input');
-    // const graduateLabel = document.createElement('label');
-    const passwordLabel = document.createElement('label');
-    const passwordInput = document.createElement('input');
-    const sendButton = document.createElement('button');
-    const footerP = document.createElement('p');
+  body.innerHTML = "";
 
-    logoSection.className = 'section-logo';
-    logoSection.appendChild(logo);
-    logo.src = '../powerL-logo_250x39.png';
-    logo.alt = 'logo-P💛werL';
+  const logoSection = document.createElement("section");
+  const logo = document.createElement("img");
+  const titleSection = document.createElement("section");
+  const h2 = document.createElement("h2");
+  const formSection = document.createElement("section");
+  const form = document.createElement("form");
+  const emailLabel = document.createElement("label");
+  const emailInput = document.createElement("input");
+  const userLabel = document.createElement("label");
+  const userInput = document.createElement("input");
+  //const statusLabel = document.createElement('label');
+  // const statusContaner = document.createElement('div');
+  // const studentInput = document.createElement('input');
+  // const studentLabel = document.createElement('label');
+  // const graduateInput = document.createElement('input');
+  // const graduateLabel = document.createElement('label');
+  const passwordLabel = document.createElement("label");
+  const passwordInput = document.createElement("input");
+  const sendButton = document.createElement("button");
+  const footerP = document.createElement("p");
 
-    titleSection.className = 'section-h2';
-    titleSection.appendChild(h2);
-    h2.innerText = "Regístrate";
+  logoSection.className = "section-logo";
+  logoSection.appendChild(logo);
+  logo.src = "../powerL-logo_250x39.png";
+  logo.alt = "logo-P💛werL";
 
-    formSection.className = 'section-form'
-    formSection.appendChild(form);
+  titleSection.className = "section-h2";
+  titleSection.appendChild(h2);
+  h2.innerText = "Regístrate";
 
-    //statusContaner.className = 'status-container'
-    
-    form.className = 'register-form';
-    form.appendChild(emailLabel);
-    form.appendChild(emailInput);
-    form.appendChild(userLabel);
-    form.appendChild(userInput);
-    //form.appendChild(statusLabel);
-    // form.appendChild(statusContaner);
-    // statusContaner.appendChild(studentInput);
-    // statusContaner.appendChild(studentLabel);
-    // statusContaner.appendChild(graduateInput);
-    // statusContaner.appendChild(graduateLabel);
-    form.appendChild(passwordLabel);
-    form.appendChild(passwordInput);
-    form.appendChild(sendButton);
+  formSection.className = "section-form";
+  formSection.appendChild(form);
 
-    emailLabel.innerText = 'Correo';
-    userLabel.innerText = 'Usuaria';
-    passwordLabel.innerText = 'Contraseña';
+  //statusContaner.className = 'status-container'
 
-    emailInput.type = 'email';
-    emailInput.pattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$';
-    emailInput.id = 'emailRegister';
-    emailInput.required = 'required';
-    emailInput.placeholder = 'email@domain.com';
+  form.className = "register-form";
+  form.appendChild(emailLabel);
+  form.appendChild(emailInput);
+  form.appendChild(userLabel);
+  form.appendChild(userInput);
+  //form.appendChild(statusLabel);
+  // form.appendChild(statusContaner);
+  // statusContaner.appendChild(studentInput);
+  // statusContaner.appendChild(studentLabel);
+  // statusContaner.appendChild(graduateInput);
+  // statusContaner.appendChild(graduateLabel);
+  form.appendChild(passwordLabel);
+  form.appendChild(passwordInput);
+  form.appendChild(sendButton);
 
-    userInput.type = 'text';
-    userInput.placeholder = 'latinaTech';
-    userInput.id = 'userRegister';
+  emailLabel.innerText = "Correo";
+  userLabel.innerText = "Usuaria";
+  passwordLabel.innerText = "Contraseña";
 
-    passwordInput.type = 'password';
-    passwordInput.minLength = '8';
-    //passwordInput.pattern = '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}';
-    passwordInput.title = 'Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters';
-    passwordInput.id = 'passwordRegister';
-    passwordInput.required = 'required';
-    passwordInput.placeholder = '********';
+  emailInput.type = "email";
+  emailInput.pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$";
+  emailInput.id = "emailRegister";
+  emailInput.required = "required";
+  emailInput.placeholder = "email@domain.com";
 
-    //statusLabel.innerText = 'Soy:'
+  userInput.type = "text";
+  userInput.placeholder = "latinaTech";
+  userInput.id = "userRegister";
 
-    // studentInput.type = 'radio';
-    // studentInput.id = 'student';
-    // studentInput.name = 'status';
-    // studentInput.value = 'Estudiante'
-    // studentLabel.for = 'student';
-    // studentLabel.innerText = 'Estudiante';
+  passwordInput.type = "password";
+  passwordInput.minLength = "8";
+  //passwordInput.pattern = '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}';
+  passwordInput.title =
+    "Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters";
+  passwordInput.id = "passwordRegister";
+  passwordInput.required = "required";
+  passwordInput.placeholder = "********";
 
-    // graduateInput.type = 'radio';
-    // graduateInput.id = 'graduate';
-    // graduateInput.name = 'status';
-    // graduateInput.value = 'Egresada'
-    // graduateLabel.for = 'graduate';
-    // graduateLabel.innerText = 'Egresada';
+  //statusLabel.innerText = 'Soy:'
 
-    sendButton.innerText = 'Enviar';
-    sendButton.className = 'sendButton';
-    //sendButton.type = 'submit';
+  // studentInput.type = 'radio';
+  // studentInput.id = 'student';
+  // studentInput.name = 'status';
+  // studentInput.value = 'Estudiante'
+  // studentLabel.for = 'student';
+  // studentLabel.innerText = 'Estudiante';
 
-    sendButton.addEventListener('click', () => {
-        console.log('SendButton clicked')
-        const email = document.getElementById('emailRegister');
-        const password = document.getElementById('passwordRegister');
-        registerEmailAndPassword(email.value, password.value);
-    })
+  // graduateInput.type = 'radio';
+  // graduateInput.id = 'graduate';
+  // graduateInput.name = 'status';
+  // graduateInput.value = 'Egresada'
+  // graduateLabel.for = 'graduate';
+  // graduateLabel.innerText = 'Egresada';
 
-    footerP.innerText = 'Desarrollada por y para Laboratorians';
-    footerContainer.appendChild(footerP);
+  sendButton.innerText = "Enviar";
+  sendButton.className = "sendButton";
+  //sendButton.type = 'submit';
 
-    mainContainer.appendChild(logoSection);
-    mainContainer.appendChild(titleSection);
-    mainContainer.appendChild(formSection);
+  footerP.innerText = "Desarrollada por y para Laboratorians";
+  footerContainer.appendChild(footerP);
 
-    body.appendChild(mainContainer);
-    body.appendChild(footerContainer);
+  mainContainer.appendChild(logoSection);
+  mainContainer.appendChild(titleSection);
+  mainContainer.appendChild(formSection);
 
-    return body;
-}
+  body.appendChild(mainContainer);
+  body.appendChild(footerContainer);
+
+  sendButton.addEventListener("click", () => {
+    console.log("SendButton clicked");
+    const email = document.getElementById("emailRegister");
+    const password = document.getElementById("passwordRegister");
+    registerEmailAndPassword(auth, email.value, password.value);
+  });
+
+  return body;
+};

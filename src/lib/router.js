@@ -14,6 +14,7 @@ export const load = () => {
     main.innerHTML='';
     footer.innerHTML = '';
     const component = routes[window.location.pathname];
+    console.log('El componente a llamar es: ', component)
     component();
 }
 
@@ -26,8 +27,4 @@ export const onNavigate = (pathname) => {
         );
     //body.appendChild(routes[pathname]())
 };
-
-// const component = routes[window.location.pathname]; 
-// console.log(component)
-// body.appendChild(component());
 

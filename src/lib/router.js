@@ -1,30 +1,34 @@
-import { Login } from "../components/login.js";
-import { Register } from "../components/register.js";
+let routes = {};
+let templates = {};
 
-const main = document.getElementById('main');
-const footer = document.getElementById('footer');
+export const route = (path, template) => { 
+    if (typeof template === 'function') {
+        return routes[path] = template;
 
+    } else if (typeof template === 'string') {
+        return routes[path] = templates[template]; 
 
-const routes = {
-    '/': Login,
-    '/register': Register
+    } else {
+        return;
+    }
 };
 
-export const load = () => {
-    main.innerHTML='';
-    footer.innerHTML = '';
-    const component = routes[window.location.pathname];
-    console.log('El componente a llamar es: ', component)
-    component();
-}
-
-export const onNavigate = (pathname) => {
-    console.log("entramos a onNavigate")
-    window.history.pushState(
-        {},
-        pathname,
-        window.location.origin + pathname
-        );
-    //body.appendChild(routes[pathname]())
+export const template = (name, templateFunction) => { 
+    return templates[name] = templateFunction;
 };
 
+export const resolveRoute = (route) => {
+    try {
+        return routes[route]; 
+    }
+    catch (e) {
+        throw new Error(`Route ${route} not found`);
+    };
+};
+
+export const router = () => {
+    let url = window.location.hash.slice(1) || '/';
+    console.log(url)
+    let route = resolveRoute(url);
+    route() ;
+};

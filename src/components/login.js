@@ -1,11 +1,11 @@
-import { onNavigate } from "../lib/router.js";
-
 export const Login = () => {
     const body = document.getElementById('body');
     const mainContainer = document.getElementById('main');
     const footerContainer = document.getElementById('footer');
 
-    body.innerHTML='';
+    //body.innerHTML='';
+    mainContainer.innerHTML = '';
+    footerContainer.innerHTML = '';
 
     const logoSection = document.createElement('section');
     const logo = document.createElement('img');
@@ -66,7 +66,7 @@ export const Login = () => {
     questionP.appendChild(registerLink);
     registerLink.innerText = 'Regístrate';
     registerLink.id = 'register-link'
-    registerLink.href = '';
+    registerLink.href = '#/register';
 
     
     or.innerText = 'o';
@@ -88,10 +88,6 @@ export const Login = () => {
     
     body.appendChild(mainContainer);
     body.appendChild(footerContainer);
-    
-    registerLink.addEventListener('click', () => {
-        onNavigate('/register')
-    });
 
-   return body;
+   //return body;
 }

@@ -1,18 +1,14 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
-import firebaseConfig from "../firebase/firebaseConfig.js";
-import {getAuth } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-
-import { registerEmailAndPassword } from "../firebase/firebaseFunctions.js";
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+import { registerFirebase} from '../firebase/firebaseFunctions.js';
+import {auth} from '../main.js'
 
 export const Register = () => {
   const body = document.getElementById("body");
   const mainContainer = document.getElementById("main");
   const footerContainer = document.getElementById("footer");
 
-  body.innerHTML = "";
+  //body.innerHTML = "";
+  mainContainer.innerHTML = '';
+  footerContainer.innerHTML = '';
 
   const logoSection = document.createElement("section");
   const logo = document.createElement("img");
@@ -81,8 +77,8 @@ export const Register = () => {
   passwordInput.type = "password";
   passwordInput.minLength = "8";
   //passwordInput.pattern = '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}';
-  passwordInput.title =
-    "Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters";
+ // passwordInput.title =
+    //"Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters";
   passwordInput.id = "passwordRegister";
   passwordInput.required = "required";
   passwordInput.placeholder = "********";
@@ -105,6 +101,7 @@ export const Register = () => {
 
   sendButton.innerText = "Enviar";
   sendButton.className = "sendButton";
+  sendButton.id = "sendButton";
   //sendButton.type = 'submit';
 
   footerP.innerText = "Desarrollada por y para Laboratorians";
@@ -117,12 +114,13 @@ export const Register = () => {
   body.appendChild(mainContainer);
   body.appendChild(footerContainer);
 
-  sendButton.addEventListener("click", () => {
-    console.log("SendButton clicked");
-    const email = document.getElementById("emailRegister");
-    const password = document.getElementById("passwordRegister");
-    registerEmailAndPassword(auth, email.value, password.value);
-  });
-
-  return body;
+  const submit = document.getElementById('sendButton');
+  submit.addEventListener('click', (e) => {
+      e.preventDefault();
+      let email = document.getElementById('emailRegister').value
+      let password = document.getElementById('passwordRegister').value
+      let user = document.getElementById('userRegister').value
+      registerFirebase(auth, email, password)
+      console.log('Registro finalizado')
+  })
 };

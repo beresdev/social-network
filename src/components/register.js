@@ -89,8 +89,8 @@ export const Register = () => {
       e.preventDefault();
       let email = document.getElementById('emailRegister').value
       let password = document.getElementById('passwordRegister').value
-      let user = document.getElementById('userRegister').value
-      registerFirebase(getAuthInstance(), email, password)
+      let userName = document.getElementById('userRegister').value
+      registerFirebase(getAuthInstance(), email, password, userName)
       console.log('Registro finalizado')
   })
 };

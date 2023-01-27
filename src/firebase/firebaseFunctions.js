@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  updateProfile,
   sendEmailVerification, 
   signInWithPopup,
   GoogleAuthProvider
@@ -7,15 +8,32 @@ import {
 
 import { router } from "../lib/router.js";
 
-export const registerFirebase = (auth, email, password) => {
+export const registerFirebase = (auth, email, password, userName) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       console.log(user);
     })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+      })
+    .then(function() {
+      updateProfile(auth.currentUser, {
+        displayName: userName
+      }).then(() => {
+        console.log("Nombre agregado")
+      }).catch((error) => {
+        console.log(error)
+      });
+    })
     .then(function () {
-      sendEmailVerification(auth.currentUser);
-      alert("Please, check your email inbox");
+      const configuration = {
+        url: 'http://localhost:3000/'
+      }
+      sendEmailVerification(auth.currentUser, configuration);
+      alert("Welcome to <P💛werL>, please, check your email inbox");
       window.history.pushState({}, "", "#/");
       router();
     })
@@ -29,23 +47,16 @@ export const registerFirebase = (auth, email, password) => {
 export const loginWithGoogle = (auth, provider) => {
   signInWithPopup(auth, provider)
     .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
-      // The signed-in user info.
       const user = result.user;
-      alert("Bienvenida a <P💛werL>")
-      // ...
+      alert("Welcome to <P💛werL>")
     })
     .catch((error) => {
-      // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
       alert(errorMessage);
-      // The email of the user's account used.
       const email = error.customData.email;
-      // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
     });
 };

@@ -1,11 +1,14 @@
-import { onNavigate } from "../lib/router.js";
+import { getAuthInstance, googleInstance } from '../firebase/firebaseInit.js'
+import { loginWithGoogle } from '../firebase/firebaseFunctions.js';
 
 export const Login = () => {
     const body = document.getElementById('body');
     const mainContainer = document.getElementById('main');
     const footerContainer = document.getElementById('footer');
 
-    body.innerHTML='';
+    //body.innerHTML='';
+    mainContainer.innerHTML = '';
+    footerContainer.innerHTML = '';
 
     const logoSection = document.createElement('section');
     const logo = document.createElement('img');
@@ -66,31 +69,37 @@ export const Login = () => {
     questionP.appendChild(registerLink);
     registerLink.innerText = 'Regístrate';
     registerLink.id = 'register-link'
-    registerLink.href = '';
+    registerLink.href = '#/register';
 
-    registerLink.addEventListener('click', () => {
-        onNavigate('/register')
-    });
-
+    
     or.innerText = 'o';
-
+    
     googleLogin.appendChild(loginWith);
     googleLogin.appendChild(googleLogo);
     googleLogin.className = 'login-google'
-
+    
     loginWith.className = 'login-with';
     loginWith.innerText = 'Inicia sesión con ';
     googleLogo.className = 'google-logo';
-
+    googleLogo.id = 'loginGoogle';
+    
     mainContainer.appendChild(logoSection);
     mainContainer.appendChild(formSection);
     mainContainer.appendChild(registerGoogleSection);
-
+    
     footerP.innerText = 'Desarrollada por y para Laboratorians';
     footerContainer.appendChild(footerP);
-
+    
     body.appendChild(mainContainer);
     body.appendChild(footerContainer);
 
-   return body;
+    const loginG = document.getElementById('loginGoogle');
+
+    loginG.addEventListener('click', (e) => {
+        e.preventDefault();
+        let auth = getAuthInstance();
+        let prov = googleInstance();
+        loginWithGoogle(auth, prov);
+    })
+
 }

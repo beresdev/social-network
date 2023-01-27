@@ -1,34 +1,35 @@
-import { Login } from "../components/login.js";
-import { Register } from "../components/register.js";
+let routes = {};
+let templates = {};
 
-const main = document.getElementById('main');
-const footer = document.getElementById('footer');
+export const route = (path, template) => { 
+    if (typeof template === 'function') {
+        return routes[path] = template;
 
+    } else if (typeof template === 'string') {
+        return routes[path] = templates[template]; 
 
-const routes = {
-    '/': Login,
-    //'/login': Login,
-    '/register': Register
+    } else {
+        return;
+    }
 };
 
-export const load = () => {
-    main.innerHTML='';
-    footer.innerHTML = '';
-    const component = routes[window.location.pathname];
-    component();
-}
-
-export const onNavigate = (pathname) => {
-    console.log("entramos a onNavigate")
-    window.history.pushState(
-        {},
-        pathname,
-        window.location.origin + pathname
-        );
-    //body.appendChild(routes[pathname]())
+export const template = (name, templateFunction) => { 
+    return templates[name] = templateFunction;
 };
 
-// const component = routes[window.location.pathname]; 
-// console.log(component)
-// body.appendChild(component());
+export const resolveRoute = (route) => {
+    try {
+        return routes[route]; 
+    }
+    catch (e) {
+        throw new Error(`Route ${route} not found`);
+    };
+};
 
+export const router = () => {
+    console.log("entrando a router")
+    let url = window.location.hash.slice(1) || '/';
+    console.log(url)
+    let route = resolveRoute(url);
+    route() ;
+};

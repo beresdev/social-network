@@ -1,3 +1,6 @@
+import { getAuthInstance, googleInstance } from '../firebase/firebaseInit.js'
+import { loginWithGoogle } from '../firebase/firebaseFunctions.js';
+
 export const Login = () => {
     const body = document.getElementById('body');
     const mainContainer = document.getElementById('main');
@@ -78,6 +81,7 @@ export const Login = () => {
     loginWith.className = 'login-with';
     loginWith.innerText = 'Inicia sesión con ';
     googleLogo.className = 'google-logo';
+    googleLogo.id = 'loginGoogle';
     
     mainContainer.appendChild(logoSection);
     mainContainer.appendChild(formSection);
@@ -88,4 +92,14 @@ export const Login = () => {
     
     body.appendChild(mainContainer);
     body.appendChild(footerContainer);
+
+    const loginG = document.getElementById('loginGoogle');
+
+    loginG.addEventListener('click', (e) => {
+        e.preventDefault();
+        let auth = getAuthInstance();
+        let prov = googleInstance();
+        loginWithGoogle(auth, prov);
+    })
+
 }

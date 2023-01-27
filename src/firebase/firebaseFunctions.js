@@ -50,7 +50,7 @@ export const loginWithGoogle = (auth, provider) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      alert("Bienvenida a <P💛werL>")
+      alert("Welcome to <P💛werL>")
     })
     .catch((error) => {
       const errorCode = error.code;

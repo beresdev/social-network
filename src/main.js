@@ -16,15 +16,6 @@ template('login', function () {
 
 template('register', function () {
     Register();
-    // const submit = document.getElementById('sendButton');
-    // submit.addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     let email = document.getElementById('emailRegister').value
-    //     let password = document.getElementById('passwordRegister').value
-    //     registerFirebase(auth, email, password)
-    //     email = "";
-    //     password = "";
-    // })
 })
 
 route('/', 'login');

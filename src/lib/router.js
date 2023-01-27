@@ -27,6 +27,7 @@ export const resolveRoute = (route) => {
 };
 
 export const router = () => {
+    console.log("entrando a router")
     let url = window.location.hash.slice(1) || '/';
     console.log(url)
     let route = resolveRoute(url);

@@ -88,6 +88,4 @@ export const Login = () => {
     
     body.appendChild(mainContainer);
     body.appendChild(footerContainer);
-
-   //return body;
 }

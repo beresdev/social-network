@@ -6,7 +6,8 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js';
-/* eslint-disable */
+
+/* eslint-enable */
 
 import { router } from '../lib/router.js';
 

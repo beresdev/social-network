@@ -16,6 +16,8 @@ export const template = (name, templateFunction) => {
   return (templates[name] = templateFunction);
 };
 
+/* eslint-enable */
+
 export const resolveRoute = (routed) => {
   try {
     return routes[routed];
@@ -31,5 +33,3 @@ export const router = () => {
   const routed = resolveRoute(url);
   routed();
 };
-
-/* eslint-disable */

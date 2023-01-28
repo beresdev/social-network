@@ -1,9 +1,9 @@
 import {
   createUserWithEmailAndPassword,
   updateProfile,
-  sendEmailVerification, 
+  sendEmailVerification,
   signInWithPopup,
-  GoogleAuthProvider
+  GoogleAuthProvider,
 } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
 
 import { router } from "../lib/router.js";
@@ -15,23 +15,25 @@ export const registerFirebase = (auth, email, password, userName) => {
       console.log(user);
     })
     .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
-      })
-    .then(function() {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+    })
+    .then(function () {
       updateProfile(auth.currentUser, {
-        displayName: userName
-      }).then(() => {
-        console.log("Nombre agregado")
-      }).catch((error) => {
-        console.log(error)
-      });
+        displayName: userName,
+      })
+        .then(() => {
+          console.log("Nombre agregado");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     })
     .then(function () {
       const configuration = {
-        url: 'http://localhost:3000/'
-      }
+        url: "http://localhost:3000/",
+      };
       sendEmailVerification(auth.currentUser, configuration);
       alert("Welcome to <P💛werL>, please, check your email inbox");
       window.history.pushState({}, "", "#/");
@@ -50,7 +52,7 @@ export const loginWithGoogle = (auth, provider) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      alert("Welcome to <P💛werL>")
+      alert("Welcome to <P💛werL>");
     })
     .catch((error) => {
       const errorCode = error.code;

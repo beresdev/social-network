@@ -1,5 +1,5 @@
-import { getAuthInstance } from '../firebase/firebaseInit.js'
-import { registerFirebase} from '../firebase/firebaseFunctions.js';
+import { getAuthInstance } from "../firebase/firebaseInit.js";
+import { registerFirebase } from "../firebase/firebaseFunctions.js";
 
 export const Register = () => {
   const body = document.getElementById("body");
@@ -7,8 +7,8 @@ export const Register = () => {
   const footerContainer = document.getElementById("footer");
 
   //body.innerHTML = "";
-  mainContainer.innerHTML = '';
-  footerContainer.innerHTML = '';
+  mainContainer.innerHTML = "";
+  footerContainer.innerHTML = "";
 
   const logoSection = document.createElement("section");
   const logo = document.createElement("img");
@@ -37,7 +37,6 @@ export const Register = () => {
   formSection.className = "section-form";
   formSection.appendChild(form);
 
-
   form.className = "register-form";
   form.appendChild(emailLabel);
   form.appendChild(emailInput);
@@ -64,11 +63,10 @@ export const Register = () => {
 
   passwordInput.type = "password";
   passwordInput.minLength = "8";
- 
+
   passwordInput.id = "passwordRegister";
   passwordInput.required = "required";
   passwordInput.placeholder = "********";
-
 
   sendButton.innerText = "Enviar";
   sendButton.className = "sendButton";
@@ -84,13 +82,13 @@ export const Register = () => {
   body.appendChild(mainContainer);
   body.appendChild(footerContainer);
 
-  const submit = document.getElementById('sendButton');
-  submit.addEventListener('click', (e) => {
-      e.preventDefault();
-      let email = document.getElementById('emailRegister').value
-      let password = document.getElementById('passwordRegister').value
-      let userName = document.getElementById('userRegister').value
-      registerFirebase(getAuthInstance(), email, password, userName)
-      console.log('Registro finalizado')
-  })
+  const submit = document.getElementById("sendButton");
+  submit.addEventListener("click", (e) => {
+    e.preventDefault();
+    let email = document.getElementById("emailRegister").value;
+    let password = document.getElementById("passwordRegister").value;
+    let userName = document.getElementById("userRegister").value;
+    registerFirebase(getAuthInstance(), email, password, userName);
+    console.log("Registro finalizado");
+  });
 };

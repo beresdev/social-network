@@ -49,14 +49,17 @@ export const Login = () => {
   eyePassword.innerHTML = '<i class="fa-regular fa-eye"></i>';
 
   emailLabel.innerText = 'Correo';
-  passwordLabel.innerText = 'Contraseña';
   emailInput.placeholder = 'email@domain.com';
+  emailInput.id = 'email';
+  passwordLabel.innerText = 'Contraseña';
   passwordInput.placeholder = '********';
+  passwordInput.id = 'password';
   forgotLink.innerText = '¿Olvidaste tu contraseña?';
   forgotLink.href = '';
   forgotLink.id = 'forgot-password';
   loginButton.innerText = 'Iniciar sesión';
   loginButton.className = 'login-button';
+  loginButton.id = 'login';
 
   registerGoogleSection.className = 'login-section-registerGoogle';
 
@@ -100,4 +103,14 @@ export const Login = () => {
     const prov = googleInstance();
     loginWithGoogle(auth, prov);
   });
+
+  const login = document.getElementById('login');
+  login.addEventListener('click', (e) => {
+    e.preventDefault();
+    const auth = getAuthInstance();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    loginEmailAndPAssword(auth, email, password);
+  })
 };
+

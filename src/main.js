@@ -1,7 +1,7 @@
 // Este es el punto de entrada de tu aplicacion
 import { Register } from './components/register.js';
 import { Login } from './components/login.js';
-// import { Feed } from './components/feed.js';
+import { Feed } from './components/feed.js';
 import { route, template, router } from './lib/router.js';
 
 template('login', () => {
@@ -12,9 +12,9 @@ template('register', () => {
   Register();
 });
 
-// template('register', () => {
-//   Feed();
-// });
+template('register', () => {
+  Feed();
+});
 
 route('/', 'login');
 route('/register', 'register');

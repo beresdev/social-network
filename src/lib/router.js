@@ -8,8 +8,9 @@ export const route = (path, template) => {
     return (routes[path] = template);
   } if (typeof template === 'string') {
     return (routes[path] = templates[template]);
+   } else {
+     return;
    }
-  return;
 };
 
 export const template = (name, templateFunction) => {
@@ -18,11 +19,11 @@ export const template = (name, templateFunction) => {
 
 /* eslint-enable */
 
-export const resolveRoute = (routed) => {
+export const resolveRoute = (route) => {
   try {
-    return routes[routed];
+    return routes[route];
   } catch (e) {
-    throw new Error(`Route ${routed} not found`);
+    throw new Error(`Route ${route} not found`);
   }
 };
 
@@ -30,6 +31,6 @@ export const router = () => {
   console.log('entrando a router');
   const url = window.location.hash.slice(1) || '/';
   console.log(url);
-  const routed = resolveRoute(url);
-  routed();
+  const route = resolveRoute(url);
+  route();
 };

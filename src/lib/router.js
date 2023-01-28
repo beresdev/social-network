@@ -1,32 +1,35 @@
-let routes = {};
-let templates = {};
+const routes = {};
+const templates = {};
+
+/* eslint-disable */
 
 export const route = (path, template) => {
-  if (typeof template === "function") {
+  if (typeof template === 'function') {
     return (routes[path] = template);
-  } else if (typeof template === "string") {
+  } if (typeof template === 'string') {
     return (routes[path] = templates[template]);
-  } else {
-    return;
-  }
+   }
+  return;
 };
 
 export const template = (name, templateFunction) => {
   return (templates[name] = templateFunction);
 };
 
-export const resolveRoute = (route) => {
+export const resolveRoute = (routed) => {
   try {
-    return routes[route];
+    return routes[routed];
   } catch (e) {
-    throw new Error(`Route ${route} not found`);
+    throw new Error(`Route ${routed} not found`);
   }
 };
 
 export const router = () => {
-  console.log("entrando a router");
-  let url = window.location.hash.slice(1) || "/";
+  console.log('entrando a router');
+  const url = window.location.hash.slice(1) || '/';
   console.log(url);
-  let route = resolveRoute(url);
-  route();
+  const routed = resolveRoute(url);
+  routed();
 };
+
+/* eslint-disable */

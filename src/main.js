@@ -1,24 +1,24 @@
 // Este es el punto de entrada de tu aplicacion
-import { Register } from "./components/register.js";
-import { Login } from "./components/login.js";
-import { Feed } from "./components/feed.js";
-import { route, template, router } from "./lib/router.js";
+import { Register } from './components/register.js';
+import { Login } from './components/login.js';
+// import { Feed } from './components/feed.js';
+import { route, template, router } from './lib/router.js';
 
-template("login", function () {
+template('login', () => {
   Login();
 });
 
-template("register", function () {
+template('register', () => {
   Register();
 });
 
-template("register", function () {
-  Feed();
-});
+// template('register', () => {
+//   Feed();
+// });
 
-route("/", "login");
-route("/register", "register");
-route("/feed", "feed");
+route('/', 'login');
+route('/register', 'register');
+route('/feed', 'feed');
 
-window.addEventListener("load", router);
-window.addEventListener("hashchange", router);
+window.addEventListener('load', router);
+window.addEventListener('hashchange', router);

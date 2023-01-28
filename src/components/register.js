@@ -1,43 +1,43 @@
-import { getAuthInstance } from "../firebase/firebaseInit.js";
-import { registerFirebase } from "../firebase/firebaseFunctions.js";
+import { getAuthInstance } from '../firebase/firebaseInit.js';
+import { registerFirebase } from '../firebase/firebaseFunctions.js';
 
 export const Register = () => {
-  const body = document.getElementById("body");
-  const mainContainer = document.getElementById("main");
-  const footerContainer = document.getElementById("footer");
+  const body = document.getElementById('body');
+  const mainContainer = document.getElementById('main');
+  const footerContainer = document.getElementById('footer');
 
-  //body.innerHTML = "";
-  mainContainer.innerHTML = "";
-  footerContainer.innerHTML = "";
+  // body.innerHTML = '';
+  mainContainer.innerHTML = '';
+  footerContainer.innerHTML = '';
 
-  const logoSection = document.createElement("section");
-  const logo = document.createElement("img");
-  const titleSection = document.createElement("section");
-  const h2 = document.createElement("h2");
-  const formSection = document.createElement("section");
-  const form = document.createElement("form");
-  const emailLabel = document.createElement("label");
-  const emailInput = document.createElement("input");
-  const userLabel = document.createElement("label");
-  const userInput = document.createElement("input");
-  const passwordLabel = document.createElement("label");
-  const passwordInput = document.createElement("input");
-  const sendButton = document.createElement("button");
-  const footerP = document.createElement("p");
+  const logoSection = document.createElement('section');
+  const logo = document.createElement('img');
+  const titleSection = document.createElement('section');
+  const h2 = document.createElement('h2');
+  const formSection = document.createElement('section');
+  const form = document.createElement('form');
+  const emailLabel = document.createElement('label');
+  const emailInput = document.createElement('input');
+  const userLabel = document.createElement('label');
+  const userInput = document.createElement('input');
+  const passwordLabel = document.createElement('label');
+  const passwordInput = document.createElement('input');
+  const sendButton = document.createElement('button');
+  const footerP = document.createElement('p');
 
-  logoSection.className = "section-logo";
+  logoSection.className = 'section-logo';
   logoSection.appendChild(logo);
-  logo.src = "../powerL-logo_250x39.png";
-  logo.alt = "logo-P💛werL";
+  logo.src = '../powerL-logo_250x39.png';
+  logo.alt = 'logo-P💛werL';
 
-  titleSection.className = "section-h2";
+  titleSection.className = 'section-h2';
   titleSection.appendChild(h2);
-  h2.innerText = "Regístrate";
+  h2.innerText = 'Regístrate';
 
-  formSection.className = "section-form";
+  formSection.className = 'section-form';
   formSection.appendChild(form);
 
-  form.className = "register-form";
+  form.className = 'register-form';
   form.appendChild(emailLabel);
   form.appendChild(emailInput);
   form.appendChild(userLabel);
@@ -47,32 +47,32 @@ export const Register = () => {
   form.appendChild(passwordInput);
   form.appendChild(sendButton);
 
-  emailLabel.innerText = "Correo";
-  userLabel.innerText = "Usuaria";
-  passwordLabel.innerText = "Contraseña";
+  emailLabel.innerText = 'Correo';
+  userLabel.innerText = 'Usuaria';
+  passwordLabel.innerText = 'Contraseña';
 
-  emailInput.type = "email";
-  emailInput.pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$";
-  emailInput.id = "emailRegister";
-  emailInput.required = "required";
-  emailInput.placeholder = "email@domain.com";
+  emailInput.type = 'email';
+  emailInput.pattern = '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$';
+  emailInput.id = 'emailRegister';
+  emailInput.required = 'required';
+  emailInput.placeholder = 'email@domain.com';
 
-  userInput.type = "text";
-  userInput.placeholder = "latinaTech";
-  userInput.id = "userRegister";
+  userInput.type = 'text';
+  userInput.placeholder = 'latinaTech';
+  userInput.id = 'userRegister';
 
-  passwordInput.type = "password";
-  passwordInput.minLength = "8";
+  passwordInput.type = 'password';
+  passwordInput.minLength = '8';
 
-  passwordInput.id = "passwordRegister";
-  passwordInput.required = "required";
-  passwordInput.placeholder = "********";
+  passwordInput.id = 'passwordRegister';
+  passwordInput.required = 'required';
+  passwordInput.placeholder = '********';
 
-  sendButton.innerText = "Enviar";
-  sendButton.className = "sendButton";
-  sendButton.id = "sendButton";
+  sendButton.innerText = 'Enviar';
+  sendButton.className = 'sendButton';
+  sendButton.id = 'sendButton';
 
-  footerP.innerText = "Desarrollada por y para Laboratorians";
+  footerP.innerText = 'Desarrollada por y para Laboratorians';
   footerContainer.appendChild(footerP);
 
   mainContainer.appendChild(logoSection);
@@ -82,13 +82,13 @@ export const Register = () => {
   body.appendChild(mainContainer);
   body.appendChild(footerContainer);
 
-  const submit = document.getElementById("sendButton");
-  submit.addEventListener("click", (e) => {
+  const submit = document.getElementById('sendButton');
+  submit.addEventListener('click', (e) => {
     e.preventDefault();
-    let email = document.getElementById("emailRegister").value;
-    let password = document.getElementById("passwordRegister").value;
-    let userName = document.getElementById("userRegister").value;
+    const email = document.getElementById('emailRegister').value;
+    const password = document.getElementById('passwordRegister').value;
+    const userName = document.getElementById('userRegister').value;
     registerFirebase(getAuthInstance(), email, password, userName);
-    console.log("Registro finalizado");
+    console.log('Registro finalizado');
   });
 };

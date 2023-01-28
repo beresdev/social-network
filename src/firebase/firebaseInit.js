@@ -1,10 +1,11 @@
+/* eslint-disable */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
 import firebaseConfig from "./firebaseConfig.js";
-[];
 import {
   getAuth,
   GoogleAuthProvider,
 } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
+/* eslint-disable */
 
 let app = null;
 let auth = null;

@@ -45,6 +45,12 @@
     color: var(--placeholder-color);
 }
 
+.login-section-registerGoogle p a {
+    padding-left: .5rem;
+    text-decoration: none;
+    color: var(--complement-color);
+}
+
 .login-section-form .login-form a {
     margin-top: 0.5rem;
     text-align: center;
@@ -75,19 +81,13 @@
     width: 100%;
     height: 30%;
     padding-top: 5%;
-} 
+}
 
 .login-section-registerGoogle p {
     padding: 10px 0;
     text-align: center;
     font-size: 1.4rem;
     font-weight: bold;
-}
-
-.login-section-registerGoogle p a {
-    padding-left: .5rem;
-    text-decoration: none;
-    color: var(--complement-color);
 }
 
 .login-google {

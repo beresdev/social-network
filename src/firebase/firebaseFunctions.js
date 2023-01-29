@@ -1,12 +1,16 @@
+/* eslint-disable */
 import {
   createUserWithEmailAndPassword,
   updateProfile,
-  sendEmailVerification, 
+  sendEmailVerification,
   signInWithPopup,
-  GoogleAuthProvider
-} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+} from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js';
 
-import { router } from "../lib/router.js";
+/* eslint-enable */
+
+import { router } from '../lib/router.js';
 
 export const registerFirebase = (auth, email, password, userName) => {
   createUserWithEmailAndPassword(auth, email, password)
@@ -15,32 +19,44 @@ export const registerFirebase = (auth, email, password, userName) => {
       console.log(user);
     })
     .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
-      })
-    .then(function() {
-      updateProfile(auth.currentUser, {
-        displayName: userName
-      }).then(() => {
-        console.log("Nombre agregado")
-      }).catch((error) => {
-        console.log(error)
-      });
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(
+        'Function: createUserWithEmailAndPassword. code error: ',
+        errorCode,
+        'message error',
+        errorMessage
+      );
     })
-    .then(function () {
+    .then(() => {
+      updateProfile(auth.currentUser, {
+        displayName: userName,
+      })
+        .then(() => {
+          console.log('Nombre agregado');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    })
+    .then(() => {
       const configuration = {
-        url: 'http://localhost:3000/'
-      }
+        url: 'http://localhost:3000/',
+      };
       sendEmailVerification(auth.currentUser, configuration);
-      alert("Welcome to <P💛werL>, please, check your email inbox");
-      window.history.pushState({}, "", "#/");
+      alert('Welcome to <P💛werL>, please, check your email inbox');
+      window.history.pushState({}, '', '#/');
       router();
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      alert(errorMessage);
+      alert(
+        'Function: sendEmailVerification. code error: ',
+        errorCode,
+        'message error',
+        errorMessage
+      );
     });
 };
 
@@ -50,13 +66,50 @@ export const loginWithGoogle = (auth, provider) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      alert("Welcome to <P💛werL>")
+      alert('Welcome to <P💛werL>');
+      console.log(
+        'Function: sendEmailVerification. token: ',
+        token,
+        'user: ',
+        user
+      );
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      alert(errorMessage);
+      alert(
+        'Function: loginWithGoogle. code error: ',
+        errorCode,
+        'message error',
+        errorMessage
+      );
       const email = error.customData.email;
       const credential = GoogleAuthProvider.credentialFromError(error);
+      console.log(
+        'Function: loginWithGoogle. email: ',
+        email,
+        'credential: ',
+        credential
+      );
+    });
+};
+
+export const loginEmailAndPAssword = (auth, email, password) => {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      window.history.pushState({}, '', '#/feed');
+      router();
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(
+        'Function: loginEmailAndPAssword. code error: ',
+        errorCode,
+        'message error: ',
+        errorMessage
+      );
     });
 };

@@ -1,5 +1,5 @@
 import { getAuthInstance, googleInstance } from '../firebase/firebaseInit.js';
-import { loginWithGoogle } from '../firebase/firebaseFunctions.js';
+import { loginWithGoogle, loginEmailAndPAssword } from '../firebase/firebaseFunctions.js';
 
 export const Login = () => {
   const body = document.getElementById('body');

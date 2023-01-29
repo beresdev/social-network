@@ -12,7 +12,7 @@ template('register', () => {
   Register();
 });
 
-template('register', () => {
+template('feed', () => {
   Feed();
 });
 

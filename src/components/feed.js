@@ -72,7 +72,7 @@ export const Feed = () => {
   publishButton.innerText = 'Publicar';
 
   postsSection.appendChild(publishedPostContainer);
-  
+
   publishedPostContainer.appendChild(optionsContainer);
   publishedPostContainer.appendChild(postContent);
   publishedPostContainer.appendChild(dataContainer);
@@ -98,7 +98,7 @@ export const Feed = () => {
   userPost.innerText = 'Tu';
 
   menuIcon.className = 'fa-solid fa-ellipsis menu-icon';
-  
+
   optionsMenu.id = 'optionsmenu';
   optionsMenu.className = 'options-menu';
   optionsMenu.innerHTML = '<li class="option" id="edit">editar</li><li class="option" id="delete">elimiar</li>';
@@ -112,14 +112,14 @@ export const Feed = () => {
 
   dataContainer.id = 'datacontainer';
   dataContainer.className = 'data-container';
- 
+
   postDate.id = 'date';
   postDate.className = 'post-date';
   postDate.innerText = 'Hoy a las 07:30';
 
   likesContainer.id = 'likesContainer';
-  likesContainer.className = 'likes-container'
-;
+  likesContainer.className = 'likes-container';
+
   likesCounter.id = 'likesCounter';
   likesCounter.className = 'likes-counter';
   likesCounter.innerText = '2';

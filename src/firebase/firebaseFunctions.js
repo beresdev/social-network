@@ -6,14 +6,11 @@ import {
   updateProfile,
   sendEmailVerification,
   signInWithPopup,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signOut,
 } from '../firebase/firebaseInit.js'
 
-// import { router } from '../lib/router.js';
-
-// export const app = getAppInstance();
-// export const auth = getAuthInstance();
-// export const provider = googleInstance();
+ import { router } from '../lib/router.js';
 
 export const configuration = { url: 'http://localhost:3000/' };
 
@@ -25,14 +22,16 @@ export const update = (authUser,userName) => updateProfile(authUser, { displayNa
 
 export const sendEmail = (authUser, configuration) => sendEmailVerification(authUser, configuration);
 
-export const loginWithGoogle = (auth, provider) => signInWithPopup(auth, provider);
+export const loginWithGoogle = () => signInWithPopup(auth, provider);
 
 export const loginEmailAndPAssword = (email, password) => signInWithEmailAndPassword(auth, email, password);
+
+export const logOut = () => signOut(auth);
 
 export const showError = (error) => {
   const errorCode = error.code;
   const errorMessage = error.message;
-  alert(
+  console.log(
     'Function: createUserWithEmailAndPassword. code error: ',
     errorCode,
     'message error',
@@ -40,84 +39,38 @@ export const showError = (error) => {
   );
 };
 
-// export const registerFirebase = (auth, email, password, userName) => {
-//   createUserWithEmailAndPassword(auth, email, password)
-//     .then((userCredential) => {
-//       const user = userCredential.user;
-//       console.log(user);
-//     })
-//     .catch((error) => {
-//       showError(error)
-//     })
-//     .then(() => {
-//       update();
-//     })
-//     .then(() => {
-//       senEmail();
-//       alert('Welcome to <P💛werL>, please, check your email inbox');
-//       window.history.pushState({}, '', '#/');
-//       router();
-//     })
-//     .catch((error) => {
-//       showError(error)
-//     })
-// };
+export const registerFirebase = (email, password, userName) => {
+  newUser(email, password)
+    .then(() => {
+      update(auth.currentUser, userName);
+    })
+    .then(() => {
+      sendEmail(auth.currentUser, configuration);
+      alert('Welcome to <P💛werL>, please, check your email inbox');
+      window.history.pushState({}, '', '#/');
+      router();
+    })
+    .catch((error) => {
+      showError(error)
+    })
+};
 
-// export const loginWithGoogle = async(auth, provider) => {
-//   try {
-//     signInWithPopup(auth, provider)
-//     alert('Welcome to <P💛werL>');
-//   } catch(error) {
-//     showError()
-//   }
-// };
+export const login = (email,password) => {
+  loginEmailAndPAssword(email, password)
+  .then(() => {
+    window.history.pushState({}, '', '#/feed');
+      router();
+  })
+  .catch((error) => {
+    showError(error)
+  })
+}
 
-// export const loginWithGoogle = (auth, provider) => {
-//   signInWithPopup(auth, provider)
-//     .then((result) => {
-//       const credential = GoogleAuthProvider.credentialFromResult(result);
-//       const token = credential.accessToken;
-//       const user = result.user;
-//       alert('Welcome to <P💛werL>');
-//       console.log(
-//         'Function: sendEmailVerification. token: ',
-//         token,
-//         'user: ',
-//         user
-//       );
-//     })
-//     .catch((error) => {
-//       showError(error);
-//       const email = error.customData.email;
-//       const credential = GoogleAuthProvider.credentialFromError(error);
-//       console.log(
-//         'Function: loginWithGoogle. email: ',
-//         email,
-//         'credential: ',
-//         credential
-//       );
-//     });
-// };
-
-// export const loginEmailAndPAssword = (auth, email, password) => {
-//   signInWithEmailAndPassword(auth, email, password)
-//     .then((userCredential) => {
-//       // Signed in
-//       const user = userCredential.user;
-//       window.history.pushState({}, '', '#/feed');
-//       router();
-//     })
-//     .catch((error) => {
-//       showError(error)
-//     });
-// };
-
-// export const loginEmailAndPAssword = async(auth, email,password) => {
-//   try {
-//     await signInWithEmailAndPassword(auth, email, password)
-//     window.history.pushState({}, '', '#/feed');
-//   } catch(error) {
-//     showError()
-//   }
-// }
-
+export const logout = () => {
+  logOut()
+  .then(() => {
+    window.history.pushState({}, '', '#/');
+    console.log('Saliendo de la aplicación');
+    router();
+  })
+}

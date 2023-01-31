@@ -7,6 +7,7 @@ import {
   sendEmail,
   loginWithGoogle,
   loginEmailAndPAssword,
+  logOut,
 } from '../src/firebase/firebaseFunctions.js';
 
 import {
@@ -17,6 +18,7 @@ import {
   sendEmailVerification,
   signInWithPopup,
   signInWithEmailAndPassword,
+  signOut,
 } from '../src/firebase/firebaseInit.js';
 
 /* eslint-disable */
@@ -112,6 +114,16 @@ jest.mock('../src/firebase/firebaseInit.js', () => ({
 
     Promise.resolve('Sesión iniciada con exito');
   }),
+
+  logOut: jest.fn(() => {
+    return 'Sesión cerrada con éxito';
+  }),
+
+  signOut: jest.fn((auth) => {
+    Promise.resolve('Sesión cerrada con exito');
+  }),
+
+
 }));
 
 describe('Función newUser(), prueba la creación de nueva usuaria', () => {
@@ -253,5 +265,17 @@ describe('Función loginEmailAndPAssword(), prueba la creación de nueva usuaria
     } catch (error) {
       expect(error.message).toBe('Contraseña incorrecta');
     }
+  });
+});
+
+describe('Función logOut(), prueba serrar sesión', () => {
+  it('Debe llamar a la función de Firebase signOut', async () => {
+    await logOut();
+    expect(signOut).toHaveBeenCalled();
+  });
+
+  it('Debe llamar a la función createUserWithEmailAndPassword con el argumento auth', async () => {
+    await logOut();
+    expect(signOut).toHaveBeenCalledWith(auth);
   });
 });

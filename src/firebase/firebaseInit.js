@@ -9,6 +9,7 @@ import {
   sendEmailVerification,
   signInWithPopup,
   signInWithEmailAndPassword,
+  signOut,
 } from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js';
 
 /* eslint-enable */
@@ -26,39 +27,5 @@ export {
   sendEmailVerification,
   signInWithPopup,
   signInWithEmailAndPassword,
+  signOut,
 };
-
-// let app;
-// let auth;
-// let provider;
-
-// const getAppInstance = () => {
-//   if (!app) {
-//     app = initializeApp(firebaseConfig);
-//     console.log('App initialized');
-//   }
-
-//   return app;
-// }
-
-// const getAuthInstance = () => {
-//   if (!auth) {
-//     auth = getAuth(getAppInstance());
-//     console.log('Auth initialized');
-//   }
-
-//   return auth;
-// }
-
-// const googleInstance = () => {
-//   if (!provider) {
-//     provider = new GoogleAuthProvider();
-//     console.log('Google provider initialized');
-//   }
-
-//   return provider;
-// }
-
-// app = getAppInstance();
-// auth = getAuthInstance();
-// provider = googleInstance();

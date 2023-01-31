@@ -274,7 +274,7 @@ describe('Función logOut(), prueba serrar sesión', () => {
     expect(signOut).toHaveBeenCalled();
   });
 
-  it('Debe llamar a la función createUserWithEmailAndPassword con el argumento auth', async () => {
+  it('Debe llamar a la función signOut con el argumento auth', async () => {
     await logOut();
     expect(signOut).toHaveBeenCalledWith(auth);
   });

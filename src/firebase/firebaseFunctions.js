@@ -51,7 +51,7 @@ export const registerFirebase = (email, password, userName) => {
       router();
     })
     .catch((error) => {
-      showError(error)
+      showError(error);
     })
 };
 
@@ -62,7 +62,7 @@ export const login = (email,password) => {
       router();
   })
   .catch((error) => {
-    showError(error)
+    showError(error);
   })
 }
 
@@ -74,3 +74,4 @@ export const logout = () => {
     router();
   })
 }
+

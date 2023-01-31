@@ -1,5 +1,6 @@
-import { getAuthInstance, googleInstance } from '../firebase/firebaseInit.js';
-import { loginWithGoogle, loginEmailAndPAssword } from '../firebase/firebaseFunctions.js';
+// import { getAuthInstance, googleInstance } from '../firebase/firebaseInit.js';
+// import { auth, provider } from '../firebase/firebaseInit.js';
+import { loginWithGoogle, login } from '../firebase/firebaseFunctions.js';
 
 export const Login = () => {
   const body = document.getElementById('body');
@@ -99,18 +100,14 @@ export const Login = () => {
 
   loginG.addEventListener('click', (e) => {
     e.preventDefault();
-    const auth = getAuthInstance();
-    const prov = googleInstance();
-    loginWithGoogle(auth, prov);
+    loginWithGoogle();
   });
 
-  const login = document.getElementById('login');
-  login.addEventListener('click', (e) => {
+  const loginB = document.getElementById('login');
+  loginB.addEventListener('click', (e) => {
     e.preventDefault();
-    const auth = getAuthInstance();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    loginEmailAndPAssword(auth, email, password);
-  })
+    login(email, password);
+  });
 };
-

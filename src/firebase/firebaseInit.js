@@ -4,37 +4,28 @@ import firebaseConfig from './firebaseConfig.js';
 import {
   getAuth,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  sendEmailVerification,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  signOut,
 } from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js';
 
 /* eslint-enable */
 
-let app = null;
-let auth = null;
-let provider = null;
+initializeApp(firebaseConfig);
+const auth = getAuth();
+const provider = new GoogleAuthProvider();
 
-export function getAppInstance() {
-  if (!app) {
-    app = initializeApp(firebaseConfig);
-    console.log('App initialized');
-  }
-
-  return app;
-}
-
-export function getAuthInstance() {
-  if (!auth) {
-    auth = getAuth(getAppInstance());
-    console.log('Auth initialized');
-  }
-
-  return auth;
-}
-
-export function googleInstance() {
-  if (!provider) {
-    provider = new GoogleAuthProvider();
-    console.log('Google provider initialized');
-  }
-
-  return provider;
-}
+export {
+  initializeApp,
+  auth,
+  provider,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  sendEmailVerification,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  signOut,
+};

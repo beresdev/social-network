@@ -17,8 +17,6 @@ export const template = (name, templateFunction) => {
   return (templates[name] = templateFunction);
 };
 
-/* eslint-enable */
-
 export const resolveRoute = (route) => {
   try {
     return routes[route];

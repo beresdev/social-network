@@ -1,4 +1,4 @@
-import { getAuthInstance } from '../firebase/firebaseInit.js';
+// import { auth } from '../firebase/firebaseInit.js';
 import { registerFirebase } from '../firebase/firebaseFunctions.js';
 
 export const Register = () => {
@@ -88,7 +88,7 @@ export const Register = () => {
     const email = document.getElementById('emailRegister').value;
     const password = document.getElementById('passwordRegister').value;
     const userName = document.getElementById('userRegister').value;
-    registerFirebase(getAuthInstance(), email, password, userName);
+    registerFirebase(email, password, userName);
     console.log('Registro finalizado');
   });
 };

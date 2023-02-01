@@ -10,13 +10,15 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js';
-
+import { getFirestore, collection, addDoc, Timestamp, getDocs } from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore.js'
 /* eslint-enable */
 
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
+const db = getFirestore(app);
 
 export {
   initializeApp,
@@ -28,4 +30,10 @@ export {
   signInWithPopup,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
+  db,
+  collection,
+  addDoc,
+  Timestamp,
+  getDocs,
 };

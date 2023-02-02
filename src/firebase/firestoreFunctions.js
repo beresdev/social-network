@@ -8,6 +8,8 @@ export const addPost = async(datejs, uid, userName, content) => {
             user: uid,
             username:userName,
             content: content,
+            likedBy: [],
+            likes: 0,
         });
     } catch(error) {
         console.log(error)

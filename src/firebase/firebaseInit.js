@@ -10,15 +10,18 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js';
 
 /* eslint-enable */
 
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
+
 export {
+  app,
   initializeApp,
   auth,
   provider,
@@ -28,4 +31,5 @@ export {
   signInWithPopup,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 };

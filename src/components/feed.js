@@ -135,7 +135,9 @@ export const Feed = () => {
 
   publishB.addEventListener('click', (e) => {
     //e.preventDefault();
-    addPost(usid,usname,contentT.value);
+    const d = new Date();
+    const date = d.toDateString();
+    addPost(date,usid,usname,contentT.value);
     contentT.value = "";
     alert('Post guardado en Firestore');
   });

@@ -1,6 +1,6 @@
 import { logout } from '../firebase/firebaseFunctions.js';
 import { auth, onAuthStateChanged } from '../firebase/firebaseInit.js';
-import { addPost, onGetPosts } from '../firebase/firestoreFunctions.js';
+import { addPost, onGetPosts, deletePost, getPost, updatePost } from '../firebase/firestoreFunctions.js';
 
 export const Feed = () => {
   console.log('entrando a vista de feed');
@@ -62,7 +62,7 @@ export const Feed = () => {
   mainContainer.appendChild(myPostSection);
   mainContainer.appendChild(postsSection);
   footerContainer.appendChild(logoutButton);
-
+  
   logoutButton.id = 'logout';
   logoutButton.className = 'logout-button';
   logoutButton.innerHTML = '<i class="fa-solid fa-right-from-bracket icon-logout"></i>';
@@ -74,11 +74,14 @@ export const Feed = () => {
   body.className = 'feed-body';
   mainContainer.className = 'feed-main';
   footerContainer.className = 'feed-footer';
-
+  
   const contentT = document.getElementById('myPostTextArea');
   const publishB = document.getElementById('publishButton');
   const publishedPosts = document.getElementById('published-posts');
-
+  const logoutB = document.getElementById('logout');
+  let editStatus = false;
+  let docId = '';
+  
   onAuthStateChanged(auth, (user) => {
     if(user) {
       usid = user.uid;
@@ -91,25 +94,34 @@ export const Feed = () => {
         
         onGetPosts((querySnapshot) => {
           let html = '';
+          let menuOptions = '';
           querySnapshot.forEach((doc) => {
             const post = doc.data()
-            //date = post.createdAt.toDate();
+            if(usid === post.user) {
+
+              menuOptions = `
+              <div class="fa-solid fa-ellipsis menu-icon">
+                <ul id="optionsmenu" class="options-menu">
+                  <li class="option op-edit" id="edit" data-id ='${doc.id}'>editar</li>
+                  <li class="option op-delete" id="delete" data-id ='${doc.id}'>elimiar</li>
+                </ul>
+              </div>
+              `;
+            } else {
+              menuOptions = '';
+            }
+            console.log(post);
             html += `
             <div class="publishPost-container" id="publishPost-container">
             <div id="optionsContainer" class="options-container">
               <p id="userpost" class="post-username">${post.username}</p>
-              <div class="fa-solid fa-ellipsis menu-icon">
-                <ul id="optionsmenu" class="options-menu">
-                  <li class="option" id="edit">editar</li>
-                  <li class="option" id="delete">elimiar</li>
-                </ul>
-              </div>
+              ${menuOptions}
             </div>
             <div id="postContent" class="post-content">
               <p id="textContent" class="text-content">${post.content}</p>
             </div>
             <div id="datacontainer" class="data-container">
-              <p id="date" class="post-date">${post.createdAt}</p>
+              <p id="date" class="post-date">${post.date}</p>
               <div id="likesContainer" class="likes-container">
                 <p id="likesCounter" class="likes-counter">2</p>
                 <span id="likes" class="likes">
@@ -119,17 +131,39 @@ export const Feed = () => {
             </div>
           </div>
             `;
-            console.log(post);
+            //console.log(post);
           });
           publishedPosts.innerHTML = html;
-        });
+          
+          const btnDelete = publishedPosts.querySelectorAll('.op-delete');
+          btnDelete.forEach(btn => {
+            btn.addEventListener('click', ({target: { dataset }}) => {
+              if (confirm('¿Segura que deseas eliminar el post?')) 
+              {
+                deletePost(dataset.id);
+              }
+            })
+          })
+
+          const btnEdit = publishedPosts.querySelectorAll('.op-edit');
+          btnEdit.forEach((btn) => {
+            btn.addEventListener('click', async ({target: {dataset}}) => {
+              const doc = await getPost(dataset.id)
+              const post = doc.data();
+              contentT.value = post.content;
+              editStatus = true;
+              docId = doc.id;
+              publishButton.innerText = 'Actualizar';
+            })
+          })
+        }) 
 
     } else {
       console.log('usuaria no logeada')
       mainContainer.innerHTML = '';
       body.removeChild(header);
       logout();
-      alert("Inicia sesión para ver el feed y publicar")
+      //alert("Inicia sesión para ver el feed y publicar")
     }
   });
 
@@ -137,15 +171,22 @@ export const Feed = () => {
     //e.preventDefault();
     const d = new Date();
     const date = d.toDateString();
-    addPost(date,usid,usname,contentT.value);
+    if(editStatus) {
+      updatePost(docId, {content: contentT.value})
+      publishButton.innerText = 'Publicar';
+      console.log('updating')
+    } else {
+      addPost(date,usid,usname,contentT.value);
+    }
     contentT.value = "";
-    alert('Post guardado en Firestore');
+    //alert('Post guardado en Firestore');
   });
-
-  const logoutB = document.getElementById('logout');
 
   logoutB.addEventListener('click', (e) => {
     e.preventDefault();
-    logout();
+    if(confirm('¿Segura que quieres cerrar sesión?'))
+    {
+      logout();
+    }
   });
 };

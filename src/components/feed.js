@@ -81,6 +81,8 @@ export const Feed = () => {
   const logoutB = document.getElementById('logout');
   let editStatus = false;
   let docId = '';
+  let likedByA = [];
+  let counter = 0;
   
   onAuthStateChanged(auth, (user) => {
     if(user) {
@@ -110,7 +112,6 @@ export const Feed = () => {
             } else {
               menuOptions = '';
             }
-            console.log(post);
             html += `
             <div class="publishPost-container" id="publishPost-container">
             <div id="optionsContainer" class="options-container">
@@ -123,9 +124,9 @@ export const Feed = () => {
             <div id="datacontainer" class="data-container">
               <p id="date" class="post-date">${post.date}</p>
               <div id="likesContainer" class="likes-container">
-                <p id="likesCounter" class="likes-counter">2</p>
+                <p id="likesCounter" class="likes-counter">${post.likes}</p>
                 <span id="likes" class="likes">
-                  <i class="fa-solid fa-heart"></i>
+                  <i class="fa-solid fa-heart" data-id ='${doc.id}'></i>
                 </span>
               </div>
             </div>
@@ -155,9 +156,28 @@ export const Feed = () => {
               docId = doc.id;
               publishButton.innerText = 'Actualizar';
             })
-          })
-        }) 
+          });
 
+          const btnLike = publishedPosts.querySelectorAll('.likes');
+          btnLike.forEach((btn) => {
+            btn.addEventListener('click', async ({target: {dataset}}) => {
+              const doc = await getPost(dataset.id)
+              const post = doc.data();
+              console.log(post.likedBy);
+              docId = doc.id;
+              likedByA = post.likedBy;
+              if(likedByA.includes(usid))
+              {
+                likedByA = likedByA.filter((item) => item !== usid);
+              } else {
+                likedByA.push(usid);
+              }
+              counter = likedByA.length
+              updatePost(docId, {likedBy: likedByA, likes: counter})
+            })
+          });
+        });
+        
     } else {
       console.log('usuaria no logeada')
       mainContainer.innerHTML = '';

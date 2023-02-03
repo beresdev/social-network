@@ -169,18 +169,15 @@ export const Feed = () => {
               if(likedByA.includes(usid))
               {
                 likedByA = likedByA.filter((item) => item !== usid);
-                // counter = likedByA.length
-                console.log('filter', likedByA, counter);
-                // updatePost(docId, {likedBy: likedByA, likes: counter})
               } else {
                 likedByA.push(usid);
-                console.log('else', likedByA, counter)
               }
               counter = likedByA.length
               updatePost(docId, {likedBy: likedByA, likes: counter})
-            } )
+            })
           });
-        }) 
+        });
+        
     } else {
       console.log('usuaria no logeada')
       mainContainer.innerHTML = '';

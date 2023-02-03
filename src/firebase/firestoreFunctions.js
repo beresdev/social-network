@@ -1,9 +1,9 @@
-import { db, addDoc, collection, Timestamp, onSnapshot, deleteDoc, doc, getDoc, updateDoc } from './firestoreInit.js';
+import { db, addDoc, collection, query, orderBy, serverTimestamp, onSnapshot, deleteDoc, doc, getDoc, updateDoc } from './firestoreInit.js';
 
 export const addPost = async(datejs, uid, userName, content) => {
     try {
         await addDoc(collection(db, "posts"), {
-            createdAt: Timestamp.now(),
+            createdAt: serverTimestamp(),
             date: datejs,
             user: uid,
             username:userName,
@@ -16,7 +16,11 @@ export const addPost = async(datejs, uid, userName, content) => {
     }
 }
 
-export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), callback);
+const colRef = collection(db, 'posts');
+
+const q = query(colRef, orderBy('createdAt', 'desc'))
+
+export const onGetPosts = (callback) => onSnapshot(q, callback);
 
 export const deletePost = (id) => deleteDoc(doc(db, 'posts', id));
 

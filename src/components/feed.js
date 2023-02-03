@@ -132,7 +132,6 @@ export const Feed = () => {
             </div>
           </div>
             `;
-            //console.log(post);
           });
           publishedPosts.innerHTML = html;
           
@@ -199,7 +198,6 @@ export const Feed = () => {
       addPost(date,usid,usname,contentT.value);
     }
     contentT.value = "";
-    //alert('Post guardado en Firestore');
   });
 
   logoutB.addEventListener('click', (e) => {

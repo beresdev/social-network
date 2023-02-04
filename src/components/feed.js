@@ -1,9 +1,14 @@
-import { logout } from '../firebase/firebaseFunctions.js';
+import { logout } from '../lib/index.js';
 import { auth, onAuthStateChanged } from '../firebase/firebaseInit.js';
-import { addPost, onGetPosts, deletePost, getPost, updatePost } from '../firebase/firestoreFunctions.js';
+import {
+  addPost,
+  onGetPosts,
+  deletePost,
+  getPost,
+  updatePost,
+} from '../firebase/firestoreFunctions.js';
 
 export const Feed = () => {
-  console.log('entrando a vista de feed');
   const body = document.getElementById('body');
   const mainContainer = document.getElementById('main');
   const footerContainer = document.getElementById('footer');
@@ -24,7 +29,7 @@ export const Feed = () => {
   const publishedPostContainer = document.createElement('div');
   const logoutButton = document.createElement('div');
   let usid = '';
-  let usname = ''; 
+  let usname = '';
 
   header.appendChild(logoSection);
   header.appendChild(helloSection);
@@ -62,7 +67,7 @@ export const Feed = () => {
   mainContainer.appendChild(myPostSection);
   mainContainer.appendChild(postsSection);
   footerContainer.appendChild(logoutButton);
-  
+
   logoutButton.id = 'logout';
   logoutButton.className = 'logout-button';
   logoutButton.innerHTML = '<i class="fa-solid fa-right-from-bracket icon-logout"></i>';
@@ -74,7 +79,7 @@ export const Feed = () => {
   body.className = 'feed-body';
   mainContainer.className = 'feed-main';
   footerContainer.className = 'feed-footer';
-  
+
   const contentT = document.getElementById('myPostTextArea');
   const publishB = document.getElementById('publishButton');
   const publishedPosts = document.getElementById('published-posts');
@@ -83,127 +88,116 @@ export const Feed = () => {
   let docId = '';
   let likedByA = [];
   let counter = 0;
-  
+
   onAuthStateChanged(auth, (user) => {
-    if(user) {
+    if (user) {
       usid = user.uid;
       usname = user.displayName;
 
-      console.log('usuaria: ', user.uid, ' logeada -> true', 'username: ', user.displayName);
-      helloSection.innerHTML =
-      `<p class="hello-feed">Hola,</p>
-        <p id="userName" class="userName-feed">${user.displayName}</p>` ;
-        
-        onGetPosts((querySnapshot) => {
-          let html = '';
-          let menuOptions = '';
-          querySnapshot.forEach((doc) => {
-            const post = doc.data()
-            if(usid === post.user) {
+      helloSection.innerHTML = `<p class='hello-feed'>Hola,</p>
+        <p id='userName' class='userName-feed'>${user.displayName}</p>`;
 
-              menuOptions = `
-              <div class="fa-solid fa-ellipsis menu-icon">
-                <ul id="optionsmenu" class="options-menu">
-                  <li class="option op-edit" id="edit" data-id ='${doc.id}'>editar</li>
-                  <li class="option op-delete" id="delete" data-id ='${doc.id}'>elimiar</li>
+      onGetPosts((querySnapshot) => {
+        let html = '';
+        let menuOptions = '';
+        querySnapshot.forEach((doc) => {
+          const post = doc.data();
+          if (usid === post.user) {
+            menuOptions = `
+              <div class='fa-solid fa-ellipsis menu-icon'>
+                <ul id='optionsmenu' class='options-menu'>
+                  <li class='option op-edit' id='edit' data-id ='${doc.id}'>editar</li>
+                  <li class='option op-delete' id='delete' data-id ='${doc.id}'>elimiar</li>
                 </ul>
               </div>
               `;
-            } else {
-              menuOptions = '';
-            }
-            html += `
-            <div class="publishPost-container" id="publishPost-container">
-            <div id="optionsContainer" class="options-container">
-              <p id="userpost" class="post-username">${post.username}</p>
+          } else {
+            menuOptions = '';
+          }
+          html += `
+            <div class='publishPost-container' id='publishPost-container'>
+            <div id='optionsContainer' class='options-container'>
+              <p id='userpost' class='post-username'>${post.username}</p>
               ${menuOptions}
             </div>
-            <div id="postContent" class="post-content">
-              <p id="textContent" class="text-content">${post.content}</p>
+            <div id='postContent' class='post-content'>
+              <p id='textContent' class='text-content'>${post.content}</p>
             </div>
-            <div id="datacontainer" class="data-container">
-              <p id="date" class="post-date">${post.date}</p>
-              <div id="likesContainer" class="likes-container">
-                <p id="likesCounter" class="likes-counter">${post.likes}</p>
-                <span id="likes" class="likes">
-                  <i class="fa-solid fa-heart" data-id ='${doc.id}'></i>
+            <div id='datacontainer' class='data-container'>
+              <p id='date' class='post-date'>${post.date}</p>
+              <div id='likesContainer' class='likes-container'>
+                <p id='likesCounter' class='likes-counter'>${post.likes}</p>
+                <span id='likes' class='likes'>
+                  <i class='fa-solid fa-heart' data-id ='${doc.id}'></i>
                 </span>
               </div>
             </div>
           </div>
             `;
-          });
-          publishedPosts.innerHTML = html;
-          
-          const btnDelete = publishedPosts.querySelectorAll('.op-delete');
-          btnDelete.forEach(btn => {
-            btn.addEventListener('click', ({target: { dataset }}) => {
-              if (confirm('¿Segura que deseas eliminar el post?')) 
-              {
-                deletePost(dataset.id);
-              }
-            })
-          })
+        });
+        publishedPosts.innerHTML = html;
 
-          const btnEdit = publishedPosts.querySelectorAll('.op-edit');
-          btnEdit.forEach((btn) => {
-            btn.addEventListener('click', async ({target: {dataset}}) => {
-              const doc = await getPost(dataset.id)
-              const post = doc.data();
-              contentT.value = post.content;
-              editStatus = true;
-              docId = doc.id;
-              publishButton.innerText = 'Actualizar';
-            })
-          });
-
-          const btnLike = publishedPosts.querySelectorAll('.likes');
-          btnLike.forEach((btn) => {
-            btn.addEventListener('click', async ({target: {dataset}}) => {
-              const doc = await getPost(dataset.id)
-              const post = doc.data();
-              console.log(post.likedBy);
-              docId = doc.id;
-              likedByA = post.likedBy;
-              if(likedByA.includes(usid))
-              {
-                likedByA = likedByA.filter((item) => item !== usid);
-              } else {
-                likedByA.push(usid);
-              }
-              counter = likedByA.length
-              updatePost(docId, {likedBy: likedByA, likes: counter})
-            })
+        const btnDelete = publishedPosts.querySelectorAll('.op-delete');
+        btnDelete.forEach((btn) => {
+          btn.addEventListener('click', ({ target: { dataset } }) => {
+            if (confirm('¿Segura que deseas eliminar el post?')) { /* eslint-disable-line */
+              deletePost(dataset.id);
+            }
           });
         });
-        
+
+        const btnEdit = publishedPosts.querySelectorAll('.op-edit');
+        btnEdit.forEach((btn) => {
+          btn.addEventListener('click', async ({ target: { dataset } }) => {
+            const doc = await getPost(dataset.id);
+            const post = doc.data();
+            contentT.value = post.content;
+            editStatus = true;
+            docId = doc.id;
+            publishButton.innerText = 'Actualizar';
+          });
+        });
+
+        const btnLike = publishedPosts.querySelectorAll('.likes');
+        btnLike.forEach((btn) => {
+          btn.addEventListener('click', async ({ target: { dataset } }) => {
+            const doc = await getPost(dataset.id);
+            const post = doc.data();
+            docId = doc.id;
+            likedByA = post.likedBy;
+            if (likedByA.includes(usid)) {
+              likedByA = likedByA.filter((item) => item !== usid);
+            } else {
+              likedByA.push(usid);
+            }
+            counter = likedByA.length;
+            updatePost(docId, { likedBy: likedByA, likes: counter });
+          });
+        });
+      });
     } else {
-      console.log('usuaria no logeada')
+      console.log('usuaria no logeada');
       mainContainer.innerHTML = '';
       body.removeChild(header);
       logout();
-      //alert("Inicia sesión para ver el feed y publicar")
     }
   });
 
-  publishB.addEventListener('click', (e) => {
-    //e.preventDefault();
+  publishB.addEventListener('click', () => {
     const d = new Date();
     const date = d.toDateString();
-    if(editStatus) {
-      updatePost(docId, {content: contentT.value})
+    if (editStatus) {
+      updatePost(docId, { content: contentT.value });
       publishButton.innerText = 'Publicar';
-      console.log('updating')
     } else {
-      addPost(date,usid,usname,contentT.value);
+      addPost(date, usid, usname, contentT.value);
     }
-    contentT.value = "";
+    contentT.value = '';
   });
 
   logoutB.addEventListener('click', (e) => {
     e.preventDefault();
-    if(confirm('¿Segura que quieres cerrar sesión?'))
-    {
+    if (confirm('¿Segura que quieres cerrar sesión?')) { /* eslint-disable-line */
       logout();
     }
   });

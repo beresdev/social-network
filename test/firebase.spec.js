@@ -8,6 +8,8 @@ import {
   loginWithGoogle,
   loginEmailAndPAssword,
   logOut,
+  // login,
+  // registerFirebase,
 } from '../src/firebase/firebaseFunctions.js';
 
 import {
@@ -28,14 +30,17 @@ jest.mock('../src/firebase/firebaseInit.js', () => ({
 
   newUser: jest.fn((auth, email, password) => {
     if (email !== 'beresdev@gmail.com') {
-      throw new Error('Email invalido');
+      // return Promise.reject(new Error('Email invalido'));
+       throw new Error('Email invalido');
     }
     if (password !== '23F56?*La') {
-      throw new Error('Contraseña incorrecta');
+      // return Promise.reject(new Error('Contraseña incorrecta'));
+       throw new Error('Contraseña incorrecta');
     }
     if (email === 'beresdev@gmail.com') {
       return 'Email válido';
     }
+    return Promise.resolve('usuaria registrada en Firebase');
   }),
 
   createUserWithEmailAndPassword: jest.fn((auth, email, password) => {
@@ -43,20 +48,18 @@ jest.mock('../src/firebase/firebaseInit.js', () => ({
       throw new Error('ERROR');
     }
 
-    Promise.resolve({ user: 'admin' });
+    return Promise.resolve({ user: 'admin' });
   }),
 
   update: jest.fn((authUser, { displayName: userName }) => {
     if (userName === 'Beres') {
       return 'Perfil actualizado';
     }
+    return Promise.resolve('Actualización realizada')
   }),
 
   updateProfile: jest.fn((authUser, { displayName: userName }) => {
-    // if( !authUser || !{displayName:userName} ) {
-    //   throw new Error('Error');
-    // }
-    Promise.resolve({ displayName: 'Beres' });
+    return Promise.resolve({ displayName: 'Beres' });
   }),
 
   sendEmail: jest.fn((authUser, configuration) => {
@@ -66,14 +69,11 @@ jest.mock('../src/firebase/firebaseInit.js', () => ({
     if (configuration === '') {
       throw new Error('Error, se requiere dato configuration');
     }
+    return Promise.resolve('Mail enviado')
   }),
 
   sendEmailVerification: jest.fn((authUser, configuration) => {
-    // if(!auth || !configuration) {
-    //   throw new Error ('Error')
-    // }
-
-    Promise.resolve('Email de verificacion enviado');
+    return Promise.resolve('Email de verificacion enviado');
   }),
 
   loginWithGoogle: jest.fn((auth, provider) => {
@@ -86,10 +86,7 @@ jest.mock('../src/firebase/firebaseInit.js', () => ({
   }),
 
   signInWithPopup: jest.fn((auth, provider) => {
-    // if(!auth || !provider) {
-    //   throw new Error ('ERROR')
-    // }
-    Promise.resolve('Registro e inicio de sesión exitosos');
+    return Promise.resolve('Registro e inicio de sesión exitosos');
   }),
 
   loginEmailAndPAssword: jest.fn((auth, email, password) => {
@@ -108,11 +105,7 @@ jest.mock('../src/firebase/firebaseInit.js', () => ({
   }),
 
   signInWithEmailAndPassword: jest.fn((auth, email, password) => {
-    if (!email || !password) {
-      throw new Error('ERROR');
-    }
-
-    Promise.resolve('Sesión iniciada con exito');
+    return Promise.resolve('Sesión iniciada con exito');
   }),
 
   logOut: jest.fn(() => {
@@ -123,6 +116,15 @@ jest.mock('../src/firebase/firebaseInit.js', () => ({
     Promise.resolve('Sesión cerrada con exito');
   }),
 
+  login: jest.fn((email, password) => {
+    if (!email || !password) {
+      throw new Error('ERROR');
+    }
+  }),
+
+  // registerFirebase: jest.fn((email, password, userName) => {
+  //   return Promise.resolve('Registro finalizado con exito');
+  // })
 
 }));
 
@@ -268,7 +270,7 @@ describe('Función loginEmailAndPAssword(), prueba la creación de nueva usuaria
   });
 });
 
-describe('Función logOut(), prueba serrar sesión', () => {
+describe('Función logOut(), prueba cerrar sesión', () => {
   it('Debe llamar a la función de Firebase signOut', async () => {
     await logOut();
     expect(signOut).toHaveBeenCalled();
@@ -279,3 +281,4 @@ describe('Función logOut(), prueba serrar sesión', () => {
     expect(signOut).toHaveBeenCalledWith(auth);
   });
 });
+

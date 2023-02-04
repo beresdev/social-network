@@ -14,7 +14,7 @@ import {
 export const addPost = async (datejs, uid, userName, contentT) => {
   try {
     await addDoc(colRef, {
-      createdAt: serverTimestamp,
+      createdAt: serverTimestamp(),
       date: datejs,
       user: uid,
       username: userName,

@@ -1,5 +1,5 @@
 // import { auth } from '../firebase/firebaseInit.js';
-import { registerFirebase } from '../firebase/firebaseFunctions.js';
+import { registerFirebase } from '../lib/index.js';
 
 export const Register = () => {
   const body = document.getElementById('body');

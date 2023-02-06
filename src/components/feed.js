@@ -90,6 +90,7 @@ export const Feed = () => {
   let counter = 0;
 
   onAuthStateChanged(auth, (user) => {
+    console.log(user);
     if (user) {
       usid = user.uid;
       usname = user.displayName;

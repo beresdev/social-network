@@ -1,5 +1,5 @@
-import { loginWithGoogle } from '../firebase/firebaseFunctions.js';
-import { login } from '../lib/index.js';
+// import { verifyUserStatus } from '../firebase/firebaseFunctions.js'
+import { login, loginGoogle } from '../lib/index.js';
 
 export const Login = () => {
   const body = document.getElementById('body');
@@ -97,16 +97,24 @@ export const Login = () => {
 
   const loginG = document.getElementById('loginGoogle');
 
-  loginG.addEventListener('click', (e) => {
-    e.preventDefault();
-    loginWithGoogle();
-  });
+  // const status = verifyUserStatus();
+  // console.log(status);
 
-  const loginB = document.getElementById('login');
-  loginB.addEventListener('click', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    login(email, password);
-  });
-};
+      loginG.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginGoogle();
+      });
+    
+      const loginB = document.getElementById('login');
+      loginB.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        if(email === '' || password == '') {
+          alert("Ingresa correo y contraseña")
+        }
+        else {
+            login(email, password);
+          }
+      });
+    };

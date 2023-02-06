@@ -1,5 +1,6 @@
 import {
   addPost,
+  serverTimestamp,
   onGetPosts,
   deletePost,
   getPost,
@@ -22,7 +23,8 @@ jest.mock('../src/firebase/firestoreInit.js', () => ({
   addDoc: jest.fn((colRef, {}) => {
     Promise.resolve('Post agregado con exito');
   }),
-  colRef: jest.fn().mockResolvedValue('colection from firestore'),
+  serverTimestamp:jest.fn(),
+  colRef: jest.fn(),
   onSnapshot: jest.fn(),
   deleteDoc: jest.fn(),
   doc: jest.fn(),
@@ -30,28 +32,6 @@ jest.mock('../src/firebase/firestoreInit.js', () => ({
   updateDoc: jest.fn()
 }));
 
-jest.mock('../src/firebase/firebaseFunctions.js', (datejs, uid, userName, contentT, id, newContent) => ({
-  addPost: jest.fn(() => {
-    if (!userName) {
-       throw new Error('Nombre de usuaria es necesario');
-    }
-    if (!contentT) {
-       throw new Error('No se permiten post vacíos');
-    }
-   }),
-   onGetPosts: jest.fn(),
-   deletePost: jest.fn( (id) => {
-    if(!id) {
-      throw new Error ('id de post requerido')
-    }
-    }),
-    getPost: jest.fn( (id) => {
-      if(!id) {
-        throw new Error ('id de post requerido')
-      }
-      }),
-    updatePost: jest.fn((id, newContent))
-}));
 
 describe('addPost, función para agregar un post', () => {
   const datejs = new Date();
@@ -63,10 +43,17 @@ describe('addPost, función para agregar un post', () => {
     expect(typeof addPost).toBe('function');
   });
 
+  it('Debe llamar addDoc', async () => {
+    await addPost(datejs, uid, userName, contentT);
+
+    expect(addDoc).toHaveBeenCalled();
+  });
+
   it('Debe llamar addDoc con los parametros establecidos', async () => {
     await addPost(datejs, uid, userName, contentT);
 
     expect(addDoc).toHaveBeenCalledWith( colRef, {
+      createdAt: serverTimestamp,
       date: datejs,
       user: uid,
       username: userName,

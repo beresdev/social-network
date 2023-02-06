@@ -1,55 +1,87 @@
-import { auth } from '../firebase/firebaseInit.js'
+import { auth } from "../firebase/firebaseInit.js";
 import {
   newUser,
   update,
   sendEmail,
   loginEmailAndPAssword,
+  loginWithGoogle,
   logOut,
-  // authUser,
   configuration,
- } from "../firebase/firebaseFunctions.js";
+} from "../firebase/firebaseFunctions.js";
 
- import { router } from './router.js';
+import { router } from "./router.js";
 
 export const showError = (error) => {
   const errorCode = error.code;
-  const errorMessage = error.message;
-  console.log(
-    'Function: createUserWithEmailAndPassword. code error: ',
-    errorCode,
-    'message error',
-    errorMessage,
-  );
+  let messageError = "";
+
+  if (errorCode == "auth/email-already-exists") {
+    messageError = "Este email ya ha sido registrado";
+  } else if (errorCode == "auth/invalid-display-name") {
+    messageError = "Ingresa un nombre válido";
+  } else if (errorCode == "auth/invalid-email") {
+    messageError = "Email inválido";
+  } else if (errorCode == "auth/wrong-password") {
+    messageError = "Contraseña incorrecta";
+  } else if (errorCode == "auth/user-not-found") {
+    messageError = "Email no registrado";
+  } else {
+    console.log("Código de error: ", errorCode);
+  }
+  alert(messageError);
 };
 
 export const registerFirebase = (email, password, userName) => {
-    newUser(email, password)
-    .then(() => {update(auth.currentUser, userName)})
+  newUser(email, password)
+    .then(() => {
+      update(auth.currentUser, userName);
+    })
     .then(() => {
       sendEmail(auth.currentUser, configuration);
-      alert('Welcome to <P💛werL>, please, check your email inbox');
-      window.history.pushState({}, '', '#/');
+      alert("Welcome to <P💛werL>, please, check your email inbox");
+      window.history.pushState({}, "", "#/");
       router();
     })
-    .catch( (error) => { showError(error)});
+    .catch((error) => {
+      showError(error);
+    });
 };
 
-export const login = (email,password) => {
+export const login = (email, password) => {
   loginEmailAndPAssword(email, password)
-  .then(() => {
-    window.history.pushState({}, '', '#/feed');
-      router();
-  })
-  .catch((error) => {
-    showError(error);
-  })
-}
+    .then((result) => {
+      if (result.user.emailVerified) {
+        console.log("usuario verificado");
+        window.history.pushState({}, "", "#/feed");
+        router();
+      } else {
+        alert("Verifica tu email y valida tu registro");
+        router();
+      }
+    })
+    .catch((error) => {
+      showError(error);
+    });
+};
 
 export const logout = () => {
-  logOut()
-  .then(() => {
-    window.history.pushState({}, '', '#/');
-    console.log('Saliendo de la aplicación');
+  logOut().then(() => {
+    window.history.pushState({}, "", "#/");
+    console.log("Saliendo de la aplicación");
     router();
-  })
-}
+  });
+};
+
+export const loginGoogle = () => {
+  o;
+  loginWithGoogle()
+    .then((result) => {
+      if (result.user) {
+        window.history.pushState({}, "", "#/feed");
+        router();
+      }
+    })
+    .catch((error) => {
+      showError(error);
+    });
+};

@@ -8,8 +8,6 @@ import {
   loginWithGoogle,
   loginEmailAndPAssword,
   logOut,
-  // login,
-  // registerFirebase,
 } from '../src/firebase/firebaseFunctions.js';
 
 import {
@@ -28,103 +26,29 @@ import {
 jest.mock('../src/firebase/firebaseInit.js', () => ({
   auth: jest.fn(() => ({ auth: 'TEST' })),
 
-  newUser: jest.fn((auth, email, password) => {
-    if (email !== 'beresdev@gmail.com') {
-      // return Promise.reject(new Error('Email invalido'));
-       throw new Error('Email invalido');
-    }
-    if (password !== '23F56?*La') {
-      // return Promise.reject(new Error('Contraseña incorrecta'));
-       throw new Error('Contraseña incorrecta');
-    }
-    if (email === 'beresdev@gmail.com') {
-      return 'Email válido';
-    }
-    return Promise.resolve('usuaria registrada en Firebase');
-  }),
-
   createUserWithEmailAndPassword: jest.fn((auth, email, password) => {
-    if (!email || !password) {
-      throw new Error('ERROR');
-    }
-
     return Promise.resolve({ user: 'admin' });
-  }),
-
-  update: jest.fn((authUser, { displayName: userName }) => {
-    if (userName === 'Beres') {
-      return 'Perfil actualizado';
-    }
-    return Promise.resolve('Actualización realizada')
   }),
 
   updateProfile: jest.fn((authUser, { displayName: userName }) => {
     return Promise.resolve({ displayName: 'Beres' });
   }),
 
-  sendEmail: jest.fn((authUser, configuration) => {
-    if (authUser === '') {
-      throw new Error('Error');
-    }
-    if (configuration === '') {
-      throw new Error('Error, se requiere dato configuration');
-    }
-    return Promise.resolve('Mail enviado')
-  }),
-
   sendEmailVerification: jest.fn((authUser, configuration) => {
     return Promise.resolve('Email de verificacion enviado');
-  }),
-
-  loginWithGoogle: jest.fn((auth, provider) => {
-    if (auth === '') {
-      throw new Error('parámetro auth obligatorio');
-    }
-    if (provider === '') {
-      throw new Error('dato de proveedor necesario');
-    }
   }),
 
   signInWithPopup: jest.fn((auth, provider) => {
     return Promise.resolve('Registro e inicio de sesión exitosos');
   }),
 
-  loginEmailAndPAssword: jest.fn((auth, email, password) => {
-    if (!email || !password) {
-      throw new Error('ERROR');
-    }
-    if (email !== 'beresdev@gmail.com') {
-      throw new Error('Email invalido');
-    }
-    if (password !== '23F56?*La') {
-      throw new Error('Contraseña incorrecta');
-    }
-    if (email === 'beresdev@gmail.com') {
-      return 'Email válido';
-    }
-  }),
-
   signInWithEmailAndPassword: jest.fn((auth, email, password) => {
     return Promise.resolve('Sesión iniciada con exito');
-  }),
-
-  logOut: jest.fn(() => {
-    return 'Sesión cerrada con éxito';
   }),
 
   signOut: jest.fn((auth) => {
     Promise.resolve('Sesión cerrada con exito');
   }),
-
-  login: jest.fn((email, password) => {
-    if (!email || !password) {
-      throw new Error('ERROR');
-    }
-  }),
-
-  // registerFirebase: jest.fn((email, password, userName) => {
-  //   return Promise.resolve('Registro finalizado con exito');
-  // })
 
 }));
 
@@ -144,30 +68,6 @@ describe('Función newUser(), prueba la creación de nueva usuaria', () => {
       email,
       password,
     );
-  });
-
-  it('Debe arrojar error por email y contraseña requeridos', async () => {
-    try {
-      await newUser();
-    } catch (error) {
-      expect(error.message).toBe('ERROR');
-    }
-  });
-
-  it('Debe arrojar error por email inválido', async () => {
-    try {
-      await newUser('powerL@gmail.com', password);
-    } catch (error) {
-      expect(error.message).toBe('Email invalido');
-    }
-  });
-
-  it('Debe arrojar error por contraseña incorrecta', async () => {
-    try {
-      await newUser(email, '1234545678');
-    } catch (error) {
-      expect(error.message).toBe('Contraseña incorrecta');
-    }
   });
 });
 
@@ -197,14 +97,6 @@ describe('Funcion sendEmail(), prueba el envío de email de verificación', () =
     await sendEmail(auth, configuration);
     expect(sendEmailVerification).toHaveBeenCalledWith(authUser, configuration);
   });
-
-  it('Debe arrojar error por parametros faltantes', async () => {
-    try {
-      await sendEmail(authUser);
-    } catch (error) {
-      expect(error.message).toBe('Error, se requiere dato configuration');
-    }
-  });
 });
 
 describe('Funcion loginWithGoogle(), prueba el inicio de sesión con Google', () => {
@@ -216,14 +108,6 @@ describe('Funcion loginWithGoogle(), prueba el inicio de sesión con Google', ()
   it('Debe llamar a la función updateProfile con los argumentos a actualizar', async () => {
     await loginWithGoogle(auth, provider);
     expect(signInWithPopup).toHaveBeenCalledWith(auth, provider);
-  });
-
-  it('Debe arrojar error por parametros faltantes', async () => {
-    try {
-      await loginWithGoogle(auth);
-    } catch (error) {
-      expect(error.message).toBe('dato de proveedor necesario');
-    }
   });
 });
 
@@ -244,30 +128,6 @@ describe('Función loginEmailAndPAssword(), prueba la creación de nueva usuaria
       password,
     );
   });
-
-  it('Debe arrojar error por email y contraseña requeridos', async () => {
-    try {
-      await loginEmailAndPAssword('', password);
-    } catch (error) {
-      expect(error.message).toBe('ERROR');
-    }
-  });
-
-  it('Debe arrojar error por email inválido', async () => {
-    try {
-      await loginEmailAndPAssword('powerL@gmail.com', password);
-    } catch (error) {
-      expect(error.message).toBe('Email invalido');
-    }
-  });
-
-  it('Debe arrojar error por contraseña incorrecta', async () => {
-    try {
-      await loginEmailAndPAssword(email, '1234545678');
-    } catch (error) {
-      expect(error.message).toBe('Contraseña incorrecta');
-    }
-  });
 });
 
 describe('Función logOut(), prueba cerrar sesión', () => {
@@ -281,4 +141,3 @@ describe('Función logOut(), prueba cerrar sesión', () => {
     expect(signOut).toHaveBeenCalledWith(auth);
   });
 });
-

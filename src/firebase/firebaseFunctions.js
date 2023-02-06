@@ -8,6 +8,7 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from '../firebase/firebaseInit.js'
 
 export const configuration = { url: 'http://localhost:3000/' };
@@ -19,6 +20,8 @@ export const newUser = (email, password) => createUserWithEmailAndPassword(auth,
 export const update = (authUser,userName) => updateProfile(authUser, { displayName: userName });
 
 export const sendEmail = (authUser, configuration) => sendEmailVerification(authUser, configuration);
+
+//export const verifyUserStatus = () => onAuthStateChanged(auth);
 
 export const loginWithGoogle = () => signInWithPopup(auth, provider);
 

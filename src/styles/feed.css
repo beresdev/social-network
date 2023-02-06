@@ -93,6 +93,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+    margin: 2rem; 
 }
 
 .publishPost-container {
@@ -165,7 +166,35 @@
     padding: 0.5rem;
     margin-bottom: 0.5rem;
     font-size: 1.4rem;
+}
 
+.post-content input {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    text-indent: 1rem;
+    border: none;
+    font-weight: bold;
+}
+
+.post-content > button {
+    width: 5rem;
+    height: 2.5rem;
+    position: relative;
+    display: inline-block;
+    bottom: 9rem;
+    left: 11rem;
+    margin-top: 0.5rem;
+    border-radius: 1rem;
+    border: none;
+    color: var(--black);
+    background-color: var(--emphasis-color);
+}
+
+.post-content > button:hover {
+    cursor: pointer;
+    background-color: var(--complement-color);
+    color: var(--base-color);
 }
 
 .publishPost-container .data-container {
@@ -204,14 +233,13 @@
     width: 100%;
     height: 5rem;
     background-color: var(--complement-color);
-    position: absolute;
+    position: fixed;
     bottom: 0;
 }
 
 .feed-footer .logout-button {
     position: relative;
     top: 1rem;
-
 }
 
 .logout-button .icon-logout {
@@ -219,5 +247,10 @@
     right: 2rem;
     font-size: 3rem;
     color: var(--base-color);
+}
+
+.logout-button .icon-logout:hover {
+    cursor: pointer;
+    color: var(--black);
 }
 

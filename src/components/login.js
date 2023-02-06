@@ -54,6 +54,7 @@ export const Login = () => {
   passwordLabel.innerText = 'Contraseña';
   passwordInput.placeholder = '********';
   passwordInput.id = 'password';
+  passwordInput.type = 'password';
   forgotLink.innerText = '¿Olvidaste tu contraseña?';
   forgotLink.href = '';
   forgotLink.id = 'forgot-password';
@@ -97,24 +98,21 @@ export const Login = () => {
 
   const loginG = document.getElementById('loginGoogle');
 
-  // const status = verifyUserStatus();
-  // console.log(status);
+  loginG.addEventListener('click', (e) => {
+    e.preventDefault();
+    loginGoogle();
+  });
 
-      loginG.addEventListener('click', (e) => {
-        e.preventDefault();
-        loginGoogle();
-      });
-    
-      const loginB = document.getElementById('login');
-      loginB.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        if(email === '' || password == '') {
-          alert("Ingresa correo y contraseña")
-        }
-        else {
-            login(email, password);
-          }
-      });
-    };
+  const loginB = document.getElementById('login');
+  loginB.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    if (email === '' || password == '') {
+      alert("Ingresa correo y contraseña")
+    }
+    else {
+      login(email, password);
+    }
+  });
+};

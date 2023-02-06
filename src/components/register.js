@@ -1,12 +1,11 @@
 // import { auth } from '../firebase/firebaseInit.js';
-import { registerFirebase } from '../lib/index.js';
+import { validFields, registerFirebase } from '../lib/index.js';
 
 export const Register = () => {
   const body = document.getElementById('body');
   const mainContainer = document.getElementById('main');
   const footerContainer = document.getElementById('footer');
 
-  // body.innerHTML = '';
   mainContainer.innerHTML = '';
   footerContainer.innerHTML = '';
 
@@ -52,7 +51,6 @@ export const Register = () => {
   passwordLabel.innerText = 'Contraseña';
 
   emailInput.type = 'email';
-  emailInput.pattern = '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$';
   emailInput.id = 'emailRegister';
   emailInput.required = 'required';
   emailInput.placeholder = 'email@domain.com';
@@ -71,6 +69,7 @@ export const Register = () => {
   sendButton.innerText = 'Enviar';
   sendButton.className = 'sendButton';
   sendButton.id = 'sendButton';
+  sendButton.type = 'submit';
 
   footerP.innerText = 'Desarrollada por y para Laboratorians';
   footerContainer.appendChild(footerP);
@@ -88,7 +87,11 @@ export const Register = () => {
     const email = document.getElementById('emailRegister').value;
     const password = document.getElementById('passwordRegister').value;
     const userName = document.getElementById('userRegister').value;
-    registerFirebase(email, password, userName);
+    if(validFields(email, password, userName)) {
+      registerFirebase(email, password, userName);
+    } else {
+      console.log('Valida tus datos')
+    }
     console.log('Registro finalizado');
   });
 };

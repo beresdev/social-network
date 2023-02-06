@@ -1,5 +1,6 @@
 import { logout } from '../lib/index.js';
 import { auth, onAuthStateChanged } from '../firebase/firebaseInit.js';
+import { serverTimestamp } from '../firebase/firestoreInit.js';
 import {
   addPost,
   onGetPosts,
@@ -16,7 +17,6 @@ export const Feed = () => {
   mainContainer.innerHTML = '';
   footerContainer.innerHTML = '';
 
-  // alert('Welcome to <P💛werL>');
   const header = document.createElement('header');
   const logoSection = document.createElement('figure');
   const logo = document.createElement('img');
@@ -26,6 +26,9 @@ export const Feed = () => {
   const myPost = document.createElement('textarea');
   const publishButton = document.createElement('button');
   const postsSection = document.createElement('section');
+  const inputEdit = document.createElement('input');
+  const buttonUpdate = document.createElement('button');
+  const buttonCancelUpdate = document.createElement('button');
   const publishedPostContainer = document.createElement('div');
   const logoutButton = document.createElement('div');
   let usid = '';
@@ -63,6 +66,14 @@ export const Feed = () => {
   postsSection.appendChild(publishedPostContainer);
   postsSection.className = 'section-postsPublished';
   postsSection.id = 'published-posts';
+
+  buttonUpdate.innerText = 'Actualizar';
+  buttonUpdate.id = 'updateComent';
+  buttonUpdate.className = 'update-button';
+
+  buttonCancelUpdate.innerText = 'Cancelar';
+  buttonCancelUpdate.id = 'cancelUpdate';
+  buttonCancelUpdate.className = 'cancel-update';
 
   mainContainer.appendChild(myPostSection);
   mainContainer.appendChild(postsSection);
@@ -121,8 +132,8 @@ export const Feed = () => {
               <p id='userpost' class='post-username'>${post.username}</p>
               ${menuOptions}
             </div>
-            <div id='postContent' class='post-content'>
-              <p id='textContent' class='text-content'>${post.content}</p>
+            <div id='${doc.id}' class='post-content'>
+              <p class='text-content' value = '${post.content}'>${post.content}</p>
             </div>
             <div id='datacontainer' class='data-container'>
               <p id='date' class='post-date'>${post.date}</p>
@@ -152,10 +163,26 @@ export const Feed = () => {
           btn.addEventListener('click', async ({ target: { dataset } }) => {
             const doc = await getPost(dataset.id);
             const post = doc.data();
-            contentT.value = post.content;
-            editStatus = true;
             docId = doc.id;
-            publishButton.innerText = 'Actualizar';
+            let postEdit = document.getElementById(doc.id);
+            inputEdit.value = post.content;
+            postEdit.innerHTML = '';
+            postEdit.appendChild(inputEdit);
+            postEdit.appendChild(buttonUpdate);
+            postEdit.appendChild(buttonCancelUpdate);
+
+            const btnUpdate = document.getElementById('updateComent');
+            btnUpdate.addEventListener('click', () => {
+              const d = new Date();
+              const date = d.toDateString();
+              if(inputEdit.value.trim() !== '') {
+                updatePost(docId, {createdAt: serverTimestamp(), date:date, content: inputEdit.value });
+              }
+            })
+            const btnCancel = document.getElementById('cancelUpdate');
+            btnCancel.addEventListener('click', () => {
+              postEdit.innerHTML = `<p class="text-content" value="que tal editado">${post.content}</p>`
+            })
           });
         });
 
@@ -187,13 +214,12 @@ export const Feed = () => {
   publishB.addEventListener('click', () => {
     const d = new Date();
     const date = d.toDateString();
-    if (editStatus) {
-      updatePost(docId, { content: contentT.value });
-      publishButton.innerText = 'Publicar';
-    } else {
-      addPost(date, usid, usname, contentT.value);
+    if(contentT.value.trim() !== '') {
+        addPost(date, usid, usname, contentT.value);
+        contentT.value = '';
+      } else {
+      alert('Escribe algo para compartir')
     }
-    contentT.value = '';
   });
 
   logoutB.addEventListener('click', (e) => {
@@ -202,4 +228,4 @@ export const Feed = () => {
       logout();
     }
   });
-};
+}

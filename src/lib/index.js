@@ -25,11 +25,34 @@ export const showError = (error) => {
     messageError = "Contraseña incorrecta";
   } else if (errorCode == "auth/user-not-found") {
     messageError = "Email no registrado";
+  } else if(errorCode == 'auth/email-already-in-use') {
+    messageError = 'Email en uso, intenta con otro'
   } else {
     console.log("Código de error: ", errorCode);
   }
   alert(messageError);
 };
+
+export const validFields =(email, password, userName) => {
+  const validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+  if(validEmail.test(email)) {
+    console.log('Datos válidos')
+  } else {
+    alert('Formato de email inválido')
+    return false
+  } if(password.length >= 6) {
+    console.log('formato de contraseña correcto')
+  } else {
+    alert('Tu contraseña debe tener a menos 6 caracteres')
+    return false
+  } if (userName !== '') {
+    console.log('Campo userName no vacío')
+  } else {
+    alert('Ingresa nombre de usuaria')
+    return false
+  }
+    return true
+}
 
 export const registerFirebase = (email, password, userName) => {
   newUser(email, password)

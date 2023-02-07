@@ -1,0 +1,126 @@
+.section-logo {
+  height: 25%;
+  padding-top: 12rem;
+}
+
+.section-h2 {
+  height: 10%;
+  padding-top: 4rem;
+}
+
+.section-h2 h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.section-form {
+  height: 65%;
+  margin: 0;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.section-form .register-form label {
+  padding: 2rem 0 1rem 0;
+  margin-left: 5%;
+  font-size: 1.4rem;
+  color: var(--complement-color);
+}
+
+.section-form .register-form input {
+  margin: 0 auto;
+  width: 29rem;
+  height: 4rem;
+  border: 2px solid var(--black);
+  border-radius: 2rem;
+  text-indent: 1rem;
+  font-size: 1.4rem;
+}
+
+.register-form input::placeholder {
+  color: var(--placeholder-color);
+}
+
+.register-form .status-container {
+  display: flex;
+}
+
+.register-form .status-container input {
+  width: 3rem;
+  height: 2rem;
+  margin-right: 0;
+}
+
+.register-form .status-container label {
+  margin: 0;
+  padding: 0;
+  padding-right: 3rem;
+  color: var(--black);
+}
+
+.sendButton {
+  width: 18rem;
+  height: 3.2rem;
+  margin: 2rem auto 0;
+  border-radius: 1.5rem;
+  border: none;
+  background-color: var(--emphasis-color);
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.sendButton:hover {
+  background-color: var(--complement-color);
+  color: var(--base-color);
+}
+
+@media only screen and (min-width: 768px) {
+  .section-h2 h2 {
+    font-size: 3rem;
+  }
+
+  .section-form .register-form label {
+    font-size: 1.6rem;
+  }
+
+  .section-form .register-form input {
+    width: 32rem;
+    height: 5rem;
+    font-size: 1.6rem;
+  }
+
+  .section-form .sendButton {
+    width: 20rem;
+    height: 4rem;
+    margin: 3rem auto 0;
+    font-size: 1.6rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .section-logo img {
+    display: none;
+  }
+
+  .section-logo {
+    width: 40rem;
+    height: auto;
+    margin-top: 15rem;
+    background-image: url(../powerL-logo-removebg-preview.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .section-h2 h2 {
+    font-size: 3.5rem;
+  }
+
+  .section-form .sendButton {
+    margin: 4rem auto 0;
+
+  }
+}

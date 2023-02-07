@@ -1,0 +1,295 @@
+.login-section-logo {
+  height: 25%;
+  padding-top: 12rem;
+}
+
+.login-section-form {
+  height: 45%;
+  padding: 0.5rem;
+  margin-top: 10%;
+}
+
+.login-section-form .login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-section-form .login-form label {
+  padding: 2rem 0 1rem 0;
+  margin-left: 5%;
+  font-size: 1.4rem;
+  color: var(--complement-color);
+}
+
+.login-section-form .login-form input {
+  margin: 0 auto;
+  width: 29rem;
+  height: 4rem;
+  border-radius: 2rem;
+  text-indent: 1rem;
+  font-size: 1.4rem;
+  border: 2px solid var(--black);
+}
+
+.login-section-form .login-form input::placeholder {
+  color: var(--placeholder-color);
+}
+
+.login-section-form .login-form span {
+  position: relative;
+  width: 1.7rem;
+  top: -2.6rem;
+  left: 26rem;
+  font-size: 1.4rem;
+  color: var(--placeholder-color);
+}
+
+.login-section-registerGoogle p a {
+  padding-left: 0.5rem;
+  text-decoration: none;
+  color: var(--complement-color);
+}
+
+.login-section-form .login-form a {
+  margin-top: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
+  color: var(--complement-color);
+}
+
+.login-section-form .login-form .login-button {
+  width: 17rem;
+  height: 3rem;
+  background-color: var(--emphasis-color);
+  color: var(--black);
+  border: none;
+  border-radius: 15px;
+  margin: 10% auto 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.login-section-form .login-form .login-button:hover {
+  background-color: var(--complement-color);
+  color: var(--base-color);
+  cursor: pointer;
+}
+
+.login-section-registerGoogle {
+  width: 100%;
+  height: 30%;
+  padding-top: 5%;
+}
+
+.login-section-registerGoogle p {
+  padding: 10px 0;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.login-google {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.login-section-registerGoogle .google-logo {
+  width: 3rem;
+  height: 3rem;
+  margin-left: 0.5rem;
+  background-image: url("../google-logo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.login-section-registerGoogle .google-logo:hover {
+  cursor: pointer;
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .login-section-form .login-form label {
+    font-size: 1.6rem;
+  }
+
+  .login-section-form .login-form input {
+    width: 40rem;
+    height: 6rem;
+    font-size: 1.6rem;
+  }
+
+  .login-section-form .login-form span {
+    width: 2rem;
+    top: -3.7rem;
+    left: 36rem;
+    font-size: 1.6rem;
+  }
+
+  .login-section-form .login-form a {
+    font-size: 1.2rem;
+    width: 15rem;
+    margin: 0 auto;
+  }
+
+  .login-section-form .login-form .login-button {
+    width: 20rem;
+    height: 4rem;
+    font-size: 1.6rem;
+  }
+  
+  footer p {
+    font-size: 1.4rem;
+  }
+
+  .login-section-registerGoogle p {
+    font-size: 1.6rem;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .login-section-logo img {
+    display: none;
+  }
+
+  .login-section-logo {
+    width: 50rem;
+    height: auto;
+    margin-top: 25rem;
+    background-image: url(../powerL-logo-removebg-preview.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .login-section-form .login-form label {
+    font-size: 1.8rem;
+  }
+
+  .login-section-form .login-form input {
+    width: 45rem;
+    height: 8rem;
+    font-size: 1.8rem;
+  }
+
+  .login-section-form .login-form span {
+    top: -4.5rem;
+    left: 40rem;
+    font-size: 1.8rem;
+  }
+
+  .login-section-form .login-form a {
+    font-size: 1.4rem;
+    width: 17rem;
+    margin: 0 auto;
+  }
+
+  .login-section-form .login-form .login-button {
+    width: 25rem;
+    height: 5rem;
+    font-size: 1.8rem;
+  }
+
+  footer p {
+    font-size: 1.8rem;
+  }
+
+  .login-section-registerGoogle p {
+    font-size: 1.8rem;
+  }
+
+  .login-section-registerGoogle .google-logo {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .login-section-logo {
+    width: 40rem;
+    margin-top: 5rem;
+  }
+
+  .login-section-form {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .login-section-form .login-form input {
+    width: 40rem;
+    height: 5rem;
+  }
+
+  .login-section-form .login-form span {
+    top: -3.5rem;
+    left: 35rem;
+  }
+
+  .login-section-form .login-form .login-button {
+    width: 20rem;
+    height: 4rem;
+    margin: 5% auto 0;
+  }
+
+  .login-section-registerGoogle {
+    padding-top: 3%;
+  }
+
+  .login-section-registerGoogle p {
+    font-size: 1.6rem;
+    padding: 2rem 0 0 0;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .login-section-logo {
+    width: 50rem;
+    margin-top: 20rem;
+  }
+
+  .login-section-form {
+    padding-top: 10rem
+  }
+
+  .login-section-form .login-form label {
+    font-size: 2rem;
+  }
+
+  .login-section-form .login-form input {
+    width: 45rem;
+    height: 6rem;
+  }
+
+  .login-section-form .login-form span {
+    top: -3.8rem;
+    left: 40rem;
+  }
+
+  .login-section-form .login-form a {
+    font-size: 1.6rem;
+    width: 20rem;
+  }
+
+  .login-section-form .login-form .login-button {
+    width: 20rem;
+    height: 4rem;
+    margin: 5% auto 0;
+  }
+
+  .login-section-registerGoogle {
+    padding-top: 2%;
+  }
+
+  .login-section-registerGoogle p {
+    font-size: 2rem;
+    padding: 2rem 0 0 0;
+  }
+
+  .login-section-registerGoogle .google-logo {
+    width: 5rem;
+    height: 5rem;
+  }
+}

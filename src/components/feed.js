@@ -67,11 +67,11 @@ export const Feed = () => {
   postsSection.className = 'section-postsPublished';
   postsSection.id = 'published-posts';
 
-  buttonUpdate.innerText = 'Actualizar';
+  buttonUpdate.innerText = 'Listo';
   buttonUpdate.id = 'updateComent';
   buttonUpdate.className = 'update-button';
 
-  buttonCancelUpdate.innerText = 'Cancelar';
+  buttonCancelUpdate.innerText = 'X';
   buttonCancelUpdate.id = 'cancelUpdate';
   buttonCancelUpdate.className = 'cancel-update';
 

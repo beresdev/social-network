@@ -33,18 +33,18 @@ Una red para compartir ideas, proyectos, oportunidades de empleo, tips, conocimi
 
 ## ✨ Diseño
 ### Prototipos de baja calidad
-![prototipoBC1-Ale](./img-rdm/Ale-1.jpg)
-![prototipoBC2-Ale](./img-rdm/Ale-2.jpg)
-![prototipoBC3-Ale](./img-rdm/Ale-3.jpg)
-![prototipoBC1-Bere](./img-rdm/Bere_HU7.jpg)
-![prototipoBC1-Jeannie](./img-rdm/Jeannie.jpg)
+![prototipoBC1-Ale](./img-rdm/prototypes/Ale-1.jpg)
+![prototipoBC2-Ale](./img-rdm/prototypes/Ale-2.jpg)
+![prototipoBC3-Ale](./img-rdm/prototypes/Ale-3.jpg)
+![prototipoBC1-Bere](./img-rdm/prototypes/Bere_HU7.jpg)
+![prototipoBC1-Jeannie](./img-rdm//prototypes/eannie.jpg)
 
-![prototipoBC1-Ale](./img-rdm/protBC1Figma.PNG)
-![prototipoBC1-Ale](./img-rdm/protBC2Figma.PNG)
+![prototipoBC1-Ale](./img-rdm/prototypes/protBC1Figma.PNG)
+![prototipoBC1-Ale](./img-rdm/prototypes/protBC2Figma.PNG)
 
 
 ### Prototipo de alta calidad
-![prototipoBC1-Ale](./img-rdm/protAC1Figma.PNG)
+![prototipoBC1-Ale](./img-rdm/prototypes/protAC1Figma.PNG)
 
 ## 👨🏻‍🔬 Pruebas de usabilidad
 

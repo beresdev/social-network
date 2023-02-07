@@ -108,10 +108,9 @@ export const Login = () => {
     e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    if (email === '' || password == '') {
-      alert("Ingresa correo y contraseña")
-    }
-    else {
+    if (email === '' || password === '') {
+      alert('Ingresa correo y contraseña');
+    } else {
       login(email, password);
     }
   });

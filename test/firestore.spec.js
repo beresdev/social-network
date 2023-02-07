@@ -1,6 +1,5 @@
 import {
   addPost,
-  serverTimestamp,
   onGetPosts,
   deletePost,
   getPost,
@@ -13,6 +12,7 @@ import {
   colRef,
   q,
   addDoc,
+  serverTimestamp,
   onSnapshot,
   deleteDoc,
   getDoc,

@@ -95,13 +95,11 @@ export const Feed = () => {
   const publishB = document.getElementById('publishButton');
   const publishedPosts = document.getElementById('published-posts');
   const logoutB = document.getElementById('logout');
-  let editStatus = false;
   let docId = '';
   let likedByA = [];
   let counter = 0;
 
   onAuthStateChanged(auth, (user) => {
-    console.log(user);
     if (user) {
       usid = user.uid;
       usname = user.displayName;
@@ -164,7 +162,7 @@ export const Feed = () => {
             const doc = await getPost(dataset.id);
             const post = doc.data();
             docId = doc.id;
-            let postEdit = document.getElementById(doc.id);
+            const postEdit = document.getElementById(doc.id);
             inputEdit.value = post.content;
             postEdit.innerHTML = '';
             postEdit.appendChild(inputEdit);
@@ -175,14 +173,21 @@ export const Feed = () => {
             btnUpdate.addEventListener('click', () => {
               const d = new Date();
               const date = d.toDateString();
-              if(inputEdit.value.trim() !== '') {
-                updatePost(docId, {createdAt: serverTimestamp(), date:date, content: inputEdit.value });
+              if (inputEdit.value.trim() !== '') {
+                updatePost(
+                  docId,
+                  {
+                    createdAt: serverTimestamp(),
+                    date: date, /* eslint-disable-line */
+                    content: inputEdit.value,
+                  },
+                );
               }
-            })
+            });
             const btnCancel = document.getElementById('cancelUpdate');
             btnCancel.addEventListener('click', () => {
-              postEdit.innerHTML = `<p class="text-content" value="que tal editado">${post.content}</p>`
-            })
+              postEdit.innerHTML = `<p class="text-content" value="que tal editado">${post.content}</p>`;
+            });
           });
         });
 
@@ -214,11 +219,11 @@ export const Feed = () => {
   publishB.addEventListener('click', () => {
     const d = new Date();
     const date = d.toDateString();
-    if(contentT.value.trim() !== '') {
-        addPost(date, usid, usname, contentT.value);
-        contentT.value = '';
-      } else {
-      alert('Escribe algo para compartir')
+    if (contentT.value.trim() !== '') {
+      addPost(date, usid, usname, contentT.value);
+      contentT.value = '';
+    } else {
+      alert('Escribe algo para compartir');
     }
   });
 
@@ -228,4 +233,4 @@ export const Feed = () => {
       logout();
     }
   });
-}
+};

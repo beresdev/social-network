@@ -87,10 +87,10 @@ export const Register = () => {
     const email = document.getElementById('emailRegister').value;
     const password = document.getElementById('passwordRegister').value;
     const userName = document.getElementById('userRegister').value;
-    if(validFields(email, password, userName)) {
+    if (validFields(email, password, userName)) {
       registerFirebase(email, password, userName);
     } else {
-      console.log('Valida tus datos')
+      console.log('Valida tus datos');
     }
     console.log('Registro finalizado');
   });

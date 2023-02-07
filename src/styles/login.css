@@ -109,7 +109,6 @@
   cursor: pointer;
 }
 
-
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .login-section-form .login-form label {
@@ -140,13 +139,13 @@
     height: 4rem;
     font-size: 1.6rem;
   }
+  
+  footer p {
+    font-size: 1.4rem;
+  }
 
   .login-section-registerGoogle p {
     font-size: 1.6rem;
-  }
-
-  footer p {
-    font-size: 1.4rem;
   }
 }
 
@@ -167,12 +166,6 @@
 
   .login-section-form .login-form label {
     font-size: 1.8rem;
-  }
-
-  .login-section-form .login-form input {
-    width: 40rem;
-    height: 6rem;
-    font-size: 1.6rem;
   }
 
   .login-section-form .login-form input {
@@ -199,6 +192,10 @@
     font-size: 1.8rem;
   }
 
+  footer p {
+    font-size: 1.8rem;
+  }
+
   .login-section-registerGoogle p {
     font-size: 1.8rem;
   }
@@ -206,10 +203,6 @@
   .login-section-registerGoogle .google-logo {
     width: 4rem;
     height: 4rem;
-  }
-
-  footer p {
-    font-size: 1.8rem;
   }
 }
 

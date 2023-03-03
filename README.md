@@ -2,7 +2,7 @@
 ## Creada por y para Laboratorians
 
 ___
-P💛werL nació desde la idea de tener una sola red que uniera a toda la comunidad de estudiantes y egresadas de cualquie bootcamp que ofrece Laboratoria.
+P💛werL nació desde la idea de tener una sola red que uniera a toda la comunidad de estudiantes y egresadas de cualquier bootcamp que ofrece Laboratoria.
 Una red para compartir ideas, proyectos, oportunidades de empleo, tips, conocimiento, memes, etc.
 
 ## 👯‍♂️ Historias de usuaria
@@ -32,18 +32,18 @@ Una red para compartir ideas, proyectos, oportunidades de empleo, tips, conocimi
 ![HU8](./img-rdm/HU/HU8.PNG)
 
 ## ✨ Diseño
-### Prototipos de baja calidad
+### Prototipos de baja fidelidad
 ![prototipoBC1-Ale](./img-rdm/prototypes/Ale-1.jpg)
 ![prototipoBC2-Ale](./img-rdm/prototypes/Ale-2.jpg)
 ![prototipoBC3-Ale](./img-rdm/prototypes/Ale-3.jpg)
 ![prototipoBC1-Bere](./img-rdm/prototypes/Bere_HU7.jpg)
-![prototipoBC1-Jeannie](./img-rdm//prototypes/eannie.jpg)
+![prototipoBC1-Jeannie](./img-rdm//prototypes/jeannie.jpg)
 
 ![prototipoBC1-Ale](./img-rdm/prototypes/protBC1Figma.PNG)
 ![prototipoBC1-Ale](./img-rdm/prototypes/protBC2Figma.PNG)
 
 
-### Prototipo de alta calidad
+### Prototipo de alta fidelidad
 ![prototipoBC1-Ale](./img-rdm/prototypes/protAC1Figma.PNG)
 
 ## 👨🏻‍🔬 Pruebas de usabilidad

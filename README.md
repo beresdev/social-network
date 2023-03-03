@@ -37,7 +37,7 @@ Una red para compartir ideas, proyectos, oportunidades de empleo, tips, conocimi
 ![prototipoBC2-Ale](./img-rdm/prototypes/Ale-2.jpg)
 ![prototipoBC3-Ale](./img-rdm/prototypes/Ale-3.jpg)
 ![prototipoBC1-Bere](./img-rdm/prototypes/Bere_HU7.jpg)
-![prototipoBC1-Jeannie](./img-rdm//prototypes/jeannie.jpg)
+![prototipoBC1-Jeannie](./img-rdm//prototypes/Jeannie.jpg)
 
 ![prototipoBC1-Ale](./img-rdm/prototypes/protBC1Figma.PNG)
 ![prototipoBC1-Ale](./img-rdm/prototypes/protBC2Figma.PNG)
